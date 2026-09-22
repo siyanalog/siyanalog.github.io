@@ -4,12 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Experience | Siyan</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header class="site-header">
     <nav class="nav" aria-label="Main navigation">
-      <a class="brand" href="index.html">SIYAN</a>
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="projects.html">Projects</a>
@@ -21,30 +20,51 @@
 
   <main>
     <section class="hero">
-      <p class="eyebrow">Experience</p>
-      <h1>Where I've Worked</h1>
+      <p class="eyebrow">where I've worked</p>
+      <h1>Experience</h1>
       <div class="placeholder">Optional short intro or resume download link.</div>
     </section>
 
+    <!--
+      MULTI-SELECT TAG FILTERS
+      Add buttons here for new tags. No tag selected = show every entry.
+      Example: <button class="filter-button" type="button" data-filter="research" aria-pressed="false">Research</button>
+      Then add research to the matching entries' data-tags.
+    -->
+    <section class="filters" aria-label="Filter experience by tags">
+      <div class="filter-list" role="group" aria-label="Experience tags">
+        <button class="filter-button" type="button" data-filter="coop" aria-pressed="false">Co-op</button>
+        <button class="filter-button" type="button" data-filter="designteam" aria-pressed="false">Design Team</button>
+        <button class="filter-button" type="button" data-filter="courses" aria-pressed="false">Courses</button>
+      </div>
+    </section>
+
+    <!--
+      To tag an entry, add tags to data-tags separated by spaces, e.g.
+      data-tags="coop" or data-tags="design-team".
+    -->
     <section class="section">
-      <article class="entry">
+      <article class="entry filter-item" data-tags="coop">
         <h2>Company / Team 01</h2>
         <p class="entry-meta">Role · Location · Dates</p>
         <div class="placeholder">Responsibilities, technical work, impact, images, or links.</div>
       </article>
-      <article class="entry">
+      <article class="entry filter-item" data-tags="coop">
         <h2>Company / Team 02</h2>
         <p class="entry-meta">Role · Location · Dates</p>
         <div class="placeholder">Experience placeholder.</div>
       </article>
-      <article class="entry">
+      <article class="entry filter-item" data-tags="design-team">
         <h2>Company / Team 03</h2>
         <p class="entry-meta">Role · Location · Dates</p>
         <div class="placeholder">Experience placeholder.</div>
       </article>
     </section>
+
+    <p class="no-results" hidden>No experience entries match the selected tags.</p>
   </main>
 
   <footer class="site-footer"><div>© Siyan — Portfolio</div></footer>
+  <script src="js/tag-filters.js"></script>
 </body>
 </html>
