@@ -33,7 +33,7 @@
       button.setAttribute('aria-pressed', String(isSelected));
     });
 
-    if (clearButton) clearButton.hidden = selectedTags.size === 0;
+    if (clearButton) clearButton.classList.toggle('is-visible', selectedTags.size > 0);
     if (noResultsMessage) noResultsMessage.hidden = visibleCount !== 0;
   }
 

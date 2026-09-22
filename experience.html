@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Experience | Siyan</title>
+  <title>Experience</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -22,49 +22,185 @@
     <section class="hero">
       <p class="eyebrow">where I've worked</p>
       <h1>Experience</h1>
-      <div class="placeholder">Optional short intro or resume download link.</div>
     </section>
 
     <!--
-      MULTI-SELECT TAG FILTERS
-      Add buttons here for new tags. No tag selected = show every entry.
-      Example: <button class="filter-button" type="button" data-filter="research" aria-pressed="false">Research</button>
-      Then add research to the matching entries' data-tags.
+      TABS
+      Single category shown at a time. To add a category: add a
+      .tab-button here (give it a unique data-tab), and a matching
+      section below with the same value in data-panel.
     -->
-    <section class="filters" aria-label="Filter experience by tags">
-      <div class="filter-list" role="group" aria-label="Experience tags">
-        <button class="filter-button" type="button" data-filter="coop" aria-pressed="false">Co-op</button>
-        <button class="filter-button" type="button" data-filter="designteam" aria-pressed="false">Design Team</button>
-        <button class="filter-button" type="button" data-filter="courses" aria-pressed="false">Courses</button>
+    <section class="tabs-row">
+      <div class="tabs" role="tablist" aria-label="Experience category">
+        <button class="tab-button is-active" type="button" role="tab" data-tab="coop" aria-selected="true" id="tab-coop" aria-controls="panel-coop">Co-op</button>
+        <button class="tab-button" type="button" role="tab" data-tab="design-team" aria-selected="false" id="tab-design-team" aria-controls="panel-design-team">Design Team</button>
+        <button class="tab-button" type="button" role="tab" data-tab="courses" aria-selected="false" id="tab-courses" aria-controls="panel-courses">Courses</button>
       </div>
     </section>
 
     <!--
-      To tag an entry, add tags to data-tags separated by spaces, e.g.
-      data-tags="coop" or data-tags="design-team".
+      Filters which bullet points show, by tag, across every entry on the
+      page (not which entries/tabs show). Tag a bullet by adding
+      class="filter-item" data-tags="hardware firmware" (space-separated)
+      to its <li>.
     -->
-    <section class="section">
-      <article class="entry filter-item" data-tags="coop">
-        <h2>Company / Team 01</h2>
-        <p class="entry-meta">Role · Location · Dates</p>
-        <div class="placeholder">Responsibilities, technical work, impact, images, or links.</div>
+    <section class="filters-row">
+      <div class="filter-list" role="group" aria-label="Filter bullet points by tag">
+        <button class="filter-button" type="button" data-filter="hardware" aria-pressed="false">Hardware</button>
+        <button class="filter-button" type="button" data-filter="firmware" aria-pressed="false">Firmware</button>
+        <button class="filter-button" type="button" data-filter="software" aria-pressed="false">Software</button>
+      </div>
+      <button class="filter-clear" type="button">Clear</button>
+    </section>
+
+    <!--
+      CO-OP (timeline layout: company/location/dates on the left, role +
+      description on the right, connected by a vertical rail). Add more
+      entries by copying an .timeline-entry block — the rail spans however
+      many entries there are automatically.
+    -->
+    <section class="timeline" id="panel-coop" role="tabpanel" aria-labelledby="tab-coop" data-panel="coop">
+      <article class="timeline-entry">
+        <div class="timeline-meta">
+          <h2>Geotab</h2>
+          <p class="timeline-location">Waterloo, ON</p>
+          <p class="timeline-dates">Jan. 2026 – April. 2026</p>
+        </div>
+        <div class="timeline-content">
+          <h3>Embedded Developer Intern</h3>
+          <ul>
+            <li class="filter-item" data-tags="firmware hardware">Implemented a DBus API in an embedded Linux daemon, defining signal and method contracts across GPIO and UART-MCU paths to decouple hardware events</li>
+            <li class="filter-item" data-tags="hardware firmware">Deployed a HIL test rig with RPi controller by assembling CAN bus hardware, enabling local FOTA and video validation across device variants</li>
+            <li class="filter-item" data-tags="software hardware">Diagnosed and remediated video pipeline faults across 3,000 cameras by boot-time init sequencing, stall detection, and post-OOM hardware cleanup for automated recovery</li>
+            <li class="filter-item" data-tags="software">Instrumented an OTel collector with StatsD counters to surface configuration failures across a fleet of 1900+ devices</li>
+          </ul>
+          <div class="tech-stack">
+            <span>DBus</span>
+            <span>Embedded Linux</span>
+            <span>CAN Bus</span>
+            <span>OpenTelemetry</span>
+          </div>
+        </div>
       </article>
-      <article class="entry filter-item" data-tags="coop">
-        <h2>Company / Team 02</h2>
-        <p class="entry-meta">Role · Location · Dates</p>
-        <div class="placeholder">Experience placeholder.</div>
+
+      <article class="timeline-entry">
+        <div class="timeline-meta">
+          <h2>Vishay Precision Group</h2>
+          <p class="timeline-location">Toronto, ON</p>
+          <p class="timeline-dates">May. 2025 – Aug. 2025</p>
+        </div>
+        <div class="timeline-content">
+          <h3>Embedded Software Developer Intern</h3>
+          <ul>
+            <li class="filter-item" data-tags="firmware">Implemented FPGA logic in Verilog for precision weight measurement in Xilinx Vivado through RTL simulation and JTAG-based functional testing, automating verification with Tcl scripts and confirming signal integrity via oscilloscope and logic analyzer</li>
+            <li class="filter-item" data-tags="software firmware">Developed C utility to parse MCS files and write to FPGA flash via PCIe, deploy firmware remotely via SSH/SCP to enable field updates across analog I/O, LCI, and carrier card hardware</li>
+            <li class="filter-item" data-tags="software">Developed sensor validation pipeline in MATLAB to process camera data, applying edge detection to compute steel rod camber deviations and automating dimensional verification with Python</li>
+          </ul>
+          <div class="tech-stack">
+            <span>Verilog</span>
+            <span>Xilinx Vivado</span>
+            <span>JTAG</span>
+            <span>MATLAB</span>
+          </div>
+        </div>
       </article>
-      <article class="entry filter-item" data-tags="design-team">
-        <h2>Company / Team 03</h2>
-        <p class="entry-meta">Role · Location · Dates</p>
-        <div class="placeholder">Experience placeholder.</div>
+
+      <article class="timeline-entry">
+        <div class="timeline-meta">
+          <h2>KA Imaging</h2>
+          <p class="timeline-location">Waterloo, ON</p>
+          <p class="timeline-dates">Sep. 2024 – Dec. 2024</p>
+        </div>
+        <div class="timeline-content">
+          <h3>Software Developer Intern</h3>
+          <ul>
+            <li class="filter-item" data-tags="hardware software">Developed sensor acquisition pipeline for X-ray imaging, implementing gain/offset calibration to normalize raw detector output</li>
+            <li class="filter-item" data-tags="software">Optimized multi panel stitching, applying histogram correction with matrix transformation for clinical visualization</li>
+          </ul>
+          <div class="tech-stack">
+            <span>Image Processing</span>
+            <span>Sensor Calibration</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="timeline-entry">
+        <div class="timeline-meta">
+          <h2>Onsemi</h2>
+          <p class="timeline-location">Waterloo, ON</p>
+          <p class="timeline-dates">Jan. 2024 – April. 2024</p>
+        </div>
+        <div class="timeline-content">
+          <h3>Embedded Software Developer Intern</h3>
+          <ul>
+            <li class="filter-item" data-tags="firmware hardware">Developed low level GPIO and I²C driver functions in C to access FPGA control register and FTDI hardware, enabling real-time register-level configuration and testing of automotive vehicle systems</li>
+            <li class="filter-item" data-tags="hardware">Diagnosed and resolved FPGA board and adaptor faults across multiple projects using oscilloscopes, logic analyzers</li>
+          </ul>
+          <div class="tech-stack">
+            <span>C</span>
+            <span>GPIO/I²C</span>
+            <span>FPGA</span>
+          </div>
+        </div>
       </article>
     </section>
 
-    <p class="no-results" hidden>No experience entries match the selected tags.</p>
+    <!--
+      DESIGN TEAM (same timeline layout, no location line).
+    -->
+    <section class="timeline" id="panel-design-team" role="tabpanel" aria-labelledby="tab-design-team" data-panel="design-team" hidden>
+      <article class="timeline-entry">
+        <div class="timeline-meta">
+          <h2>Team Name</h2>
+          <p class="timeline-dates">Dates</p>
+        </div>
+        <div class="timeline-content">
+          <h3>Role Title</h3>
+          <p>Responsibilities, technical work, impact, images, or links.</p>
+          <div class="tech-stack">
+            <span>Tech 1</span>
+            <span>Tech 2</span>
+            <span>Tech 3</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!--
+      COURSES. Same grid columns as the timeline (so switching tabs doesn't
+      shift the text horizontally), but no location/dates and no rail — the
+      .timeline-meta column is left empty on purpose.
+    -->
+    <section class="timeline no-rail" id="panel-courses" role="tabpanel" aria-labelledby="tab-courses" data-panel="courses" hidden>
+      <article class="timeline-entry">
+        <div class="timeline-meta"></div>
+        <div class="timeline-content">
+          <h3>Course Name</h3>
+          <p>Course description, projects, or key topics.</p>
+          <div class="tech-stack">
+            <span>Tech 1</span>
+            <span>Tech 2</span>
+            <span>Tech 3</span>
+          </div>
+        </div>
+      </article>
+      <article class="timeline-entry">
+        <div class="timeline-meta"></div>
+        <div class="timeline-content">
+          <h3>Course Name</h3>
+          <p>Course description, projects, or key topics.</p>
+          <div class="tech-stack">
+            <span>Tech 1</span>
+            <span>Tech 2</span>
+            <span>Tech 3</span>
+          </div>
+        </div>
+      </article>
+    </section>
   </main>
 
   <footer class="site-footer"><div>© Siyan — Portfolio</div></footer>
   <script src="js/tag-filters.js"></script>
+  <script src="js/experience.js"></script>
 </body>
 </html>

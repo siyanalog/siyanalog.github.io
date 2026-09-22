@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Projects | Siyan</title>
+  <title>Projects</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -36,10 +36,13 @@
         <button class="filter-button" type="button" data-filter="firmware" aria-pressed="false">Firmware</button>
         <button class="filter-button" type="button" data-filter="software" aria-pressed="false">Software</button>
       </div>
+      <button class="filter-clear" type="button">Clear</button>
     </section>
 
     <!--
-      PROJECT GRID
+      PROJECT LIST
+      One project per row, image (optional) on the right.
+
       To tag a project, add tags to data-tags separated by spaces.
 
       Examples:
@@ -54,179 +57,500 @@
       the script when you create a new category.
 
       Each card:
-      - Click (or press Enter/Space when focused) to expand and reveal the
-        .project-card-details block. Give each card's details a unique id
-        and point the card's aria-controls at it.
-      - The title image is optional. Set the <img> src/alt to show it, or
-        delete the <img> tag entirely to show just the heading.
-      - Put the full write-up, extra photos, or links inside
-        .project-card-details.
+      - Click (or press Enter/Space when focused) to expand it in place — a
+        divider and the full write-up (.project-card-details) appear below.
+        Click again to collapse.
+      - The image is optional. Set the <img class="project-card-image>
+        src/alt and remove its "hidden" attribute to give a project an
+        image; it shows on the right.
+      - .tech-stack is an optional list of specific technologies used,
+        shown as small dot-separated words under the description. Add or
+        remove <span> items freely.
+      - The GitHub/link icons are commented out by default. When a project
+        has real links, uncomment its .project-links block and fill in the
+        href attributes.
+      - Inside .project-card-details, the write-up is broken into
+        .accordion-item sections (each with its own click-to-expand
+        heading) so a long write-up doesn't dump as one wall of text. Copy
+        an .accordion-item block to add more sections (e.g. "PCB Layout",
+        "Firmware", "Testing"), rename the heading text, and fill in its
+        body.
     -->
 
     <!--Hardware-->
 
     <section class="project-grid" aria-label="Projects">
 
-      <article class="project-card filter-item" data-tags="hardware" tabindex="0" role="button" aria-expanded="false" aria-controls="project-1-details">
-        <div class="project-card-content">
-          <div class="project-tags" aria-label="Project tags">
-            <span>Hardware</span>
-          </div>
-          <div class="project-title">
-            <img class="project-title-image" src="" alt="" hidden>
+      <article class="project-card filter-item" data-tags="hardware" data-slug="radio-receiver" tabindex="0" role="button" aria-expanded="false">
+        <div class="project-card-top">
+          <div class="project-card-content">
+            <div class="project-tags" aria-label="Project tags">
+              <span>Hardware</span>
+            </div>
             <h2>Radio Receiver</h2>
+            <p class="project-summary">Short description of the project. Replace this text with what you built, the problem it solves, and the technologies involved.</p>
+            <div class="tech-stack">
+              <span>Tech 1</span>
+              <span>Tech 2</span>
+              <span>Tech 3</span>
+            </div>
+            <!--
+              Add real links here, then remove the comment markers, e.g.:
+              <div class="project-links">
+              <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="icons/github.svg" alt="" width="20" height="20"></a>
+              <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="icons/external-link.svg" alt="" width="20" height="20"></a>
+              </div>
+            -->
           </div>
-          <p>Short description of the project. Replace this text with what you built, the problem it solves, and the technologies involved.</p>
-          <div class="project-card-details" id="project-1-details" hidden>
-            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
+          <img class="project-card-image" src="" alt="" hidden>
+        </div>
+        <div class="project-card-details" hidden>
+          <div class="accordion">
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>More Details</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Add more detail here.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>Section Name</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Duplicate this .accordion-item block for more sections.</p>
+              </div>
+            </div>
           </div>
         </div>
       </article>
 
-      <article class="project-card filter-item" data-tags="hardware" tabindex="0" role="button" aria-expanded="false" aria-controls="project-2-details">
-        <div class="project-card-content">
-          <div class="project-tags" aria-label="Project tags">
-            <span>Hardware</span>
-          </div>
-          <div class="project-title">
-            <img class="project-title-image" src="" alt="" hidden>
+      <article class="project-card filter-item" data-tags="hardware" data-slug="low-noise-amplifier" tabindex="0" role="button" aria-expanded="false">
+        <div class="project-card-top">
+          <div class="project-card-content">
+            <div class="project-tags" aria-label="Project tags">
+              <span>Hardware</span>
+            </div>
             <h2>Low Noise Amplifier</h2>
+            <p class="project-summary">Short description of a firmware or software project goes here.</p>
+            <div class="tech-stack">
+              <span>Tech 1</span>
+              <span>Tech 2</span>
+              <span>Tech 3</span>
+            </div>
+            <!--
+              Add real links here, then remove the comment markers, e.g.:
+              <div class="project-links">
+              <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="icons/github.svg" alt="" width="20" height="20"></a>
+              <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="icons/external-link.svg" alt="" width="20" height="20"></a>
+              </div>
+            -->
           </div>
-          <p>Short description of a firmware or software project goes here.</p>
-          <div class="project-card-details" id="project-2-details" hidden>
-            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
+          <img class="project-card-image" src="" alt="" hidden>
+        </div>
+        <div class="project-card-details" hidden>
+          <div class="accordion">
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>More Details</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Add more detail here.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>Section Name</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Duplicate this .accordion-item block for more sections.</p>
+              </div>
+            </div>
           </div>
         </div>
       </article>
 
-      <article class="project-card filter-item" data-tags="hardware firmware" tabindex="0" role="button" aria-expanded="false" aria-controls="project-4-details">
-        <div class="project-card-content">
-          <div class="project-tags" aria-label="Project tags">
-            <span>Hardware</span>
-            <span>Firmware</span>
-          </div>
-          <div class="project-title">
-            <img class="project-title-image" src="" alt="" hidden>
+      <article class="project-card filter-item" data-tags="hardware firmware" data-slug="motor-control-platform" tabindex="0" role="button" aria-expanded="false">
+        <div class="project-card-top">
+          <div class="project-card-content">
+            <div class="project-tags" aria-label="Project tags">
+              <span>Hardware</span>
+              <span>Firmware</span>
+            </div>
             <h2>Motor control platform</h2>
+            <p class="project-summary">Projects that span electronics and embedded software can appear under both filters.</p>
+            <div class="tech-stack">
+              <span>Tech 1</span>
+              <span>Tech 2</span>
+              <span>Tech 3</span>
+            </div>
+            <!--
+              Add real links here, then remove the comment markers, e.g.:
+              <div class="project-links">
+              <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="icons/github.svg" alt="" width="20" height="20"></a>
+              <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="icons/external-link.svg" alt="" width="20" height="20"></a>
+              </div>
+            -->
           </div>
-          <p>Projects that span electronics and embedded software can appear under both filters.</p>
-          <div class="project-card-details" id="project-4-details" hidden>
-            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
+          <img class="project-card-image" src="" alt="" hidden>
+        </div>
+        <div class="project-card-details" hidden>
+          <div class="accordion">
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>More Details</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Add more detail here.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>Section Name</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Duplicate this .accordion-item block for more sections.</p>
+              </div>
+            </div>
           </div>
         </div>
       </article>
 
       <!--Firmware-->
 
-      <article class="project-card filter-item" data-tags="firmware" tabindex="0" role="button" aria-expanded="false" aria-controls="project-3-details">
-        <div class="project-card-content">
-          <div class="project-tags" aria-label="Project tags">
-            <span>Firmware</span>
-          </div>
-          <div class="project-title">
-            <img class="project-title-image" src="" alt="" hidden>
+      <article class="project-card filter-item" data-tags="firmware" data-slug="fpga-digital-design" tabindex="0" role="button" aria-expanded="false">
+        <div class="project-card-top">
+          <div class="project-card-content">
+            <div class="project-tags" aria-label="Project tags">
+              <span>Firmware</span>
+            </div>
             <h2>FPGA Digital Design</h2>
+            <p class="project-summary">Short description of a hardware project goes here.</p>
+            <div class="tech-stack">
+              <span>Tech 1</span>
+              <span>Tech 2</span>
+              <span>Tech 3</span>
+            </div>
+            <!--
+              Add real links here, then remove the comment markers, e.g.:
+              <div class="project-links">
+              <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="icons/github.svg" alt="" width="20" height="20"></a>
+              <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="icons/external-link.svg" alt="" width="20" height="20"></a>
+              </div>
+            -->
           </div>
-          <p>Short description of a hardware project goes here.</p>
-          <div class="project-card-details" id="project-3-details" hidden>
-            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
+          <img class="project-card-image" src="" alt="" hidden>
+        </div>
+        <div class="project-card-details" hidden>
+          <div class="accordion">
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>More Details</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Add more detail here.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>Section Name</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Duplicate this .accordion-item block for more sections.</p>
+              </div>
+            </div>
           </div>
         </div>
       </article>
 
-      <article class="project-card filter-item" data-tags="firmware" tabindex="0" role="button" aria-expanded="false" aria-controls="project-5-details">
-        <div class="project-card-content">
-          <div class="project-tags" aria-label="Project tags">
-            <span>Firmware</span>
-          </div>
-          <div class="project-title">
-            <img class="project-title-image" src="" alt="" hidden>
+      <article class="project-card filter-item" data-tags="firmware" data-slug="wireless-geolocation-scanner" tabindex="0" role="button" aria-expanded="false">
+        <div class="project-card-top">
+          <div class="project-card-content">
+            <div class="project-tags" aria-label="Project tags">
+              <span>Firmware</span>
+            </div>
             <h2>Wireless Geolocation Scanner</h2>
+            <p class="project-summary">Projects that span electronics and embedded software can appear under both filters.</p>
+            <div class="tech-stack">
+              <span>Tech 1</span>
+              <span>Tech 2</span>
+              <span>Tech 3</span>
+            </div>
+            <!--
+              Add real links here, then remove the comment markers, e.g.:
+              <div class="project-links">
+              <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="icons/github.svg" alt="" width="20" height="20"></a>
+              <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="icons/external-link.svg" alt="" width="20" height="20"></a>
+              </div>
+            -->
           </div>
-          <p>Projects that span electronics and embedded software can appear under both filters.</p>
-          <div class="project-card-details" id="project-5-details" hidden>
-            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
+          <img class="project-card-image" src="" alt="" hidden>
+        </div>
+        <div class="project-card-details" hidden>
+          <div class="accordion">
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>More Details</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Add more detail here.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>Section Name</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Duplicate this .accordion-item block for more sections.</p>
+              </div>
+            </div>
           </div>
         </div>
       </article>
 
-      <article class="project-card filter-item" data-tags="firmware" tabindex="0" role="button" aria-expanded="false" aria-controls="project-6-details">
-        <div class="project-card-content">
-          <div class="project-tags" aria-label="Project tags">
-            <span>Firmware</span>
-          </div>
-          <div class="project-title">
-            <img class="project-title-image" src="" alt="" hidden>
+      <article class="project-card filter-item" data-tags="firmware" data-slug="esp32-voice-recognition-device" tabindex="0" role="button" aria-expanded="false">
+        <div class="project-card-top">
+          <div class="project-card-content">
+            <div class="project-tags" aria-label="Project tags">
+              <span>Firmware</span>
+            </div>
             <h2>ESP32 Voice Recognition Device</h2>
+            <p class="project-summary">Projects that span electronics and embedded software can appear under both filters.</p>
+            <div class="tech-stack">
+              <span>Tech 1</span>
+              <span>Tech 2</span>
+              <span>Tech 3</span>
+            </div>
+            <!--
+              Add real links here, then remove the comment markers, e.g.:
+              <div class="project-links">
+              <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="icons/github.svg" alt="" width="20" height="20"></a>
+              <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="icons/external-link.svg" alt="" width="20" height="20"></a>
+              </div>
+            -->
           </div>
-          <p>Projects that span electronics and embedded software can appear under both filters.</p>
-          <div class="project-card-details" id="project-6-details" hidden>
-            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
+          <img class="project-card-image" src="" alt="" hidden>
+        </div>
+        <div class="project-card-details" hidden>
+          <div class="accordion">
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>More Details</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Add more detail here.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>Section Name</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Duplicate this .accordion-item block for more sections.</p>
+              </div>
+            </div>
           </div>
         </div>
       </article>
 
-      <article class="project-card filter-item" data-tags="firmware" tabindex="0" role="button" aria-expanded="false" aria-controls="project-6-details">
-        <div class="project-card-content">
-          <div class="project-tags" aria-label="Project tags">
-            <span>Firmware</span>
-          </div>
-          <div class="project-title">
-            <img class="project-title-image" src="" alt="" hidden>
+      <article class="project-card filter-item" data-tags="firmware" data-slug="temperature-driver" tabindex="0" role="button" aria-expanded="false">
+        <div class="project-card-top">
+          <div class="project-card-content">
+            <div class="project-tags" aria-label="Project tags">
+              <span>Firmware</span>
+            </div>
             <h2>Temperature Driver</h2>
+            <p class="project-summary">Projects that span electronics and embedded software can appear under both filters.</p>
+            <div class="tech-stack">
+              <span>Tech 1</span>
+              <span>Tech 2</span>
+              <span>Tech 3</span>
+            </div>
+            <!--
+              Add real links here, then remove the comment markers, e.g.:
+              <div class="project-links">
+              <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="icons/github.svg" alt="" width="20" height="20"></a>
+              <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="icons/external-link.svg" alt="" width="20" height="20"></a>
+              </div>
+            -->
           </div>
-          <p>Projects that span electronics and embedded software can appear under both filters.</p>
-          <div class="project-card-details" id="project-6-details" hidden>
-            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
-          </div>
+          <img class="project-card-image" src="" alt="" hidden>
         </div>
-      </article>
-    
-    <!--Software-->
-    <article class="project-card filter-item" data-tags="software" tabindex="0" role="button" aria-expanded="false" aria-controls="project-6-details">
-        <div class="project-card-content">
-          <div class="project-tags" aria-label="Project tags">
-            <span>Software</span>
-          </div>
-          <div class="project-title">
-            <img class="project-title-image" src="" alt="" hidden>
-            <h2>Manium</h2>
-          </div>
-          <p>Projects that span electronics and embedded software can appear under both filters.</p>
-          <div class="project-card-details" id="project-6-details" hidden>
-            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
-          </div>
-        </div>
-      </article>
-    
-      <article class="project-card filter-item" data-tags="software" tabindex="0" role="button" aria-expanded="false" aria-controls="project-6-details">
-        <div class="project-card-content">
-          <div class="project-tags" aria-label="Project tags">
-            <span>Software</span>
-          </div>
-          <div class="project-title">
-            <img class="project-title-image" src="" alt="" hidden>
-            <h2>Godot</h2>
-          </div>
-          <p>Projects that span electronics and embedded software can appear under both filters.</p>
-          <div class="project-card-details" id="project-6-details" hidden>
-            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
+        <div class="project-card-details" hidden>
+          <div class="accordion">
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>More Details</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Add more detail here.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>Section Name</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Duplicate this .accordion-item block for more sections.</p>
+              </div>
+            </div>
           </div>
         </div>
       </article>
 
-      <article class="project-card filter-item" data-tags="software" tabindex="0" role="button" aria-expanded="false" aria-controls="project-6-details">
-        <div class="project-card-content">
-          <div class="project-tags" aria-label="Project tags">
-            <span>Software</span>
+      <!--Software-->
+      <article class="project-card filter-item" data-tags="software" data-slug="manium" tabindex="0" role="button" aria-expanded="false">
+        <div class="project-card-top">
+          <div class="project-card-content">
+            <div class="project-tags" aria-label="Project tags">
+              <span>Software</span>
+            </div>
+            <h2>Manium</h2>
+            <p class="project-summary">Projects that span electronics and embedded software can appear under both filters.</p>
+            <div class="tech-stack">
+              <span>Tech 1</span>
+              <span>Tech 2</span>
+              <span>Tech 3</span>
+            </div>
+            <!--
+              Add real links here, then remove the comment markers, e.g.:
+              <div class="project-links">
+              <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="icons/github.svg" alt="" width="20" height="20"></a>
+              <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="icons/external-link.svg" alt="" width="20" height="20"></a>
+              </div>
+            -->
           </div>
-          <div class="project-title">
-            <img class="project-title-image" src="" alt="" hidden>
+          <img class="project-card-image" src="" alt="" hidden>
+        </div>
+        <div class="project-card-details" hidden>
+          <div class="accordion">
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>More Details</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Add more detail here.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>Section Name</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Duplicate this .accordion-item block for more sections.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card filter-item" data-tags="software" data-slug="godot" tabindex="0" role="button" aria-expanded="false">
+        <div class="project-card-top">
+          <div class="project-card-content">
+            <div class="project-tags" aria-label="Project tags">
+              <span>Software</span>
+            </div>
+            <h2>Godot</h2>
+            <p class="project-summary">Projects that span electronics and embedded software can appear under both filters.</p>
+            <div class="tech-stack">
+              <span>Tech 1</span>
+              <span>Tech 2</span>
+              <span>Tech 3</span>
+            </div>
+            <!--
+              Add real links here, then remove the comment markers, e.g.:
+              <div class="project-links">
+              <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="icons/github.svg" alt="" width="20" height="20"></a>
+              <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="icons/external-link.svg" alt="" width="20" height="20"></a>
+              </div>
+            -->
+          </div>
+          <img class="project-card-image" src="" alt="" hidden>
+        </div>
+        <div class="project-card-details" hidden>
+          <div class="accordion">
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>More Details</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Add more detail here.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>Section Name</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Duplicate this .accordion-item block for more sections.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card filter-item" data-tags="software" data-slug="qt" tabindex="0" role="button" aria-expanded="false">
+        <div class="project-card-top">
+          <div class="project-card-content">
+            <div class="project-tags" aria-label="Project tags">
+              <span>Software</span>
+            </div>
             <h2>Qt</h2>
+            <p class="project-summary">Projects that span electronics and embedded software can appear under both filters.</p>
+            <div class="tech-stack">
+              <span>Tech 1</span>
+              <span>Tech 2</span>
+              <span>Tech 3</span>
+            </div>
+            <!--
+              Add real links here, then remove the comment markers, e.g.:
+              <div class="project-links">
+              <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="icons/github.svg" alt="" width="20" height="20"></a>
+              <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="icons/external-link.svg" alt="" width="20" height="20"></a>
+              </div>
+            -->
           </div>
-          <p>Projects that span electronics and embedded software can appear under both filters.</p>
-          <div class="project-card-details" id="project-6-details" hidden>
-            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
+          <img class="project-card-image" src="" alt="" hidden>
+        </div>
+        <div class="project-card-details" hidden>
+          <div class="accordion">
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>More Details</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Add more detail here.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button type="button" class="accordion-toggle" aria-expanded="false">
+                <span>Section Name</span>
+                <img class="accordion-chevron" src="icons/chevron-down.svg" alt="" width="14" height="14">
+              </button>
+              <div class="accordion-body" hidden>
+                <p>Duplicate this .accordion-item block for more sections.</p>
+              </div>
+            </div>
           </div>
         </div>
       </article>
