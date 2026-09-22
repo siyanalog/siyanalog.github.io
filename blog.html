@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blog | Siyan</title>
+  <title>Blog</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -25,25 +25,47 @@
       <div class="placeholder">Use this page for engineering writeups, build logs, lessons learned, tutorials, or personal notes.</div>
     </section>
 
+    <!--
+      MULTI-SELECT TAG FILTERS
+      Add buttons here for new tags. No tag selected = show every post.
+      Example: <button class="filter-button" type="button" data-filter="firmware" aria-pressed="false">Firmware</button>
+      Then add firmware to the matching posts' data-tags.
+    -->
+    <section class="filters" aria-label="Filter posts by tags">
+      <div class="filter-list" role="group" aria-label="Post tags">
+        <button class="filter-button" type="button" data-filter="topic1" aria-pressed="false">Topic 1</button>
+        <button class="filter-button" type="button" data-filter="topic2" aria-pressed="false">Topic 2</button>
+        <button class="filter-button" type="button" data-filter="topic3" aria-pressed="false">Topic 3</button>
+      </div>
+      <button class="filter-clear" type="button">Clear</button>
+    </section>
+
+    <!--
+      To tag a post, add tags to data-tags separated by spaces, e.g.
+      data-tags="topic1" or data-tags="topic1 topic2".
+    -->
     <section class="section">
-      <article class="entry">
+      <article class="entry filter-item" data-tags="topic1">
         <h2>Blog Post 01</h2>
         <p class="entry-meta">Date · Topic</p>
         <p>Short blog-post summary placeholder.</p>
       </article>
-      <article class="entry">
+      <article class="entry filter-item" data-tags="topic2">
         <h2>Blog Post 02</h2>
         <p class="entry-meta">Date · Topic</p>
         <p>Short blog-post summary placeholder.</p>
       </article>
-      <article class="entry">
+      <article class="entry filter-item" data-tags="topic3">
         <h2>Blog Post 03</h2>
         <p class="entry-meta">Date · Topic</p>
         <p>Short blog-post summary placeholder.</p>
       </article>
     </section>
+
+    <p class="no-results" hidden>No posts match the selected tags.</p>
   </main>
 
   <footer class="site-footer"><div>© Siyan — Portfolio</div></footer>
+  <script src="js/tag-filters.js"></script>
 </body>
 </html>
