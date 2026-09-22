@@ -4,12 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Projects | Siyan</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header class="site-header">
     <nav class="nav" aria-label="Main navigation">
-      <a class="brand" href="index.html">SIYAN</a>
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="projects.html" aria-current="page">Projects</a>
@@ -20,24 +19,225 @@
   </header>
 
   <main>
-    <section class="hero">
-      <p class="eyebrow">Projects</p>
-      <h1>What I've Built</h1>
-      <p>Choose a project category.</p>
+    <section class="hero project-hero">
+      <p class="eyebrow">what I've been doing</p>
+      <h1>Projects</h1>
     </section>
 
-    <section class="grid" aria-label="Project categories">
-      <a class="card" href="hardware.html">
-        <h2>Hardware</h2>
-        <p>PCB design, electronics, sensors, test and validation, analog/digital hardware, and physical builds.</p>
-      </a>
-      <a class="card" href="software.html">
-        <h2>Software / Firmware</h2>
-        <p>Embedded firmware, RTOS, drivers, Linux, applications, tools, automation, and other software projects.</p>
-      </a>
+    <!--
+      MULTI-SELECT TAG FILTERS
+      Add buttons here for new tags. No tag selected = show every project.
+      Example: <button class="filter-button" type="button" data-filter="robotics" aria-pressed="false">Robotics</button>
+      Then add robotics to the matching project cards' data-tags.
+    -->
+    <section class="filters" aria-label="Filter projects by tags">
+      <div class="filter-list" role="group" aria-label="Project tags">
+        <button class="filter-button" type="button" data-filter="hardware" aria-pressed="false">Hardware</button>
+        <button class="filter-button" type="button" data-filter="firmware" aria-pressed="false">Firmware</button>
+        <button class="filter-button" type="button" data-filter="software" aria-pressed="false">Software</button>
+      </div>
     </section>
+
+    <!--
+      PROJECT GRID
+      To tag a project, add tags to data-tags separated by spaces.
+
+      Examples:
+        data-tags="hardware"
+        data-tags="software"
+        data-tags="hardware software"
+
+      Future example:
+        data-tags="hardware software robotics"
+
+      The JavaScript automatically reads these tags. You do not need to edit
+      the script when you create a new category.
+
+      Each card:
+      - Click (or press Enter/Space when focused) to expand and reveal the
+        .project-card-details block. Give each card's details a unique id
+        and point the card's aria-controls at it.
+      - The title image is optional. Set the <img> src/alt to show it, or
+        delete the <img> tag entirely to show just the heading.
+      - Put the full write-up, extra photos, or links inside
+        .project-card-details.
+    -->
+
+    <!--Hardware-->
+
+    <section class="project-grid" aria-label="Projects">
+
+      <article class="project-card filter-item" data-tags="hardware" tabindex="0" role="button" aria-expanded="false" aria-controls="project-1-details">
+        <div class="project-card-content">
+          <div class="project-tags" aria-label="Project tags">
+            <span>Hardware</span>
+          </div>
+          <div class="project-title">
+            <img class="project-title-image" src="" alt="" hidden>
+            <h2>Radio Receiver</h2>
+          </div>
+          <p>Short description of the project. Replace this text with what you built, the problem it solves, and the technologies involved.</p>
+          <div class="project-card-details" id="project-1-details" hidden>
+            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card filter-item" data-tags="hardware" tabindex="0" role="button" aria-expanded="false" aria-controls="project-2-details">
+        <div class="project-card-content">
+          <div class="project-tags" aria-label="Project tags">
+            <span>Hardware</span>
+          </div>
+          <div class="project-title">
+            <img class="project-title-image" src="" alt="" hidden>
+            <h2>Low Noise Amplifier</h2>
+          </div>
+          <p>Short description of a firmware or software project goes here.</p>
+          <div class="project-card-details" id="project-2-details" hidden>
+            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card filter-item" data-tags="hardware firmware" tabindex="0" role="button" aria-expanded="false" aria-controls="project-4-details">
+        <div class="project-card-content">
+          <div class="project-tags" aria-label="Project tags">
+            <span>Hardware</span>
+            <span>Firmware</span>
+          </div>
+          <div class="project-title">
+            <img class="project-title-image" src="" alt="" hidden>
+            <h2>Motor control platform</h2>
+          </div>
+          <p>Projects that span electronics and embedded software can appear under both filters.</p>
+          <div class="project-card-details" id="project-4-details" hidden>
+            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
+          </div>
+        </div>
+      </article>
+
+      <!--Firmware-->
+
+      <article class="project-card filter-item" data-tags="firmware" tabindex="0" role="button" aria-expanded="false" aria-controls="project-3-details">
+        <div class="project-card-content">
+          <div class="project-tags" aria-label="Project tags">
+            <span>Firmware</span>
+          </div>
+          <div class="project-title">
+            <img class="project-title-image" src="" alt="" hidden>
+            <h2>FPGA Digital Design</h2>
+          </div>
+          <p>Short description of a hardware project goes here.</p>
+          <div class="project-card-details" id="project-3-details" hidden>
+            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card filter-item" data-tags="firmware" tabindex="0" role="button" aria-expanded="false" aria-controls="project-5-details">
+        <div class="project-card-content">
+          <div class="project-tags" aria-label="Project tags">
+            <span>Firmware</span>
+          </div>
+          <div class="project-title">
+            <img class="project-title-image" src="" alt="" hidden>
+            <h2>Wireless Geolocation Scanner</h2>
+          </div>
+          <p>Projects that span electronics and embedded software can appear under both filters.</p>
+          <div class="project-card-details" id="project-5-details" hidden>
+            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card filter-item" data-tags="firmware" tabindex="0" role="button" aria-expanded="false" aria-controls="project-6-details">
+        <div class="project-card-content">
+          <div class="project-tags" aria-label="Project tags">
+            <span>Firmware</span>
+          </div>
+          <div class="project-title">
+            <img class="project-title-image" src="" alt="" hidden>
+            <h2>ESP32 Voice Recognition Device</h2>
+          </div>
+          <p>Projects that span electronics and embedded software can appear under both filters.</p>
+          <div class="project-card-details" id="project-6-details" hidden>
+            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card filter-item" data-tags="firmware" tabindex="0" role="button" aria-expanded="false" aria-controls="project-6-details">
+        <div class="project-card-content">
+          <div class="project-tags" aria-label="Project tags">
+            <span>Firmware</span>
+          </div>
+          <div class="project-title">
+            <img class="project-title-image" src="" alt="" hidden>
+            <h2>Temperature Driver</h2>
+          </div>
+          <p>Projects that span electronics and embedded software can appear under both filters.</p>
+          <div class="project-card-details" id="project-6-details" hidden>
+            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
+          </div>
+        </div>
+      </article>
+    
+    <!--Software-->
+    <article class="project-card filter-item" data-tags="software" tabindex="0" role="button" aria-expanded="false" aria-controls="project-6-details">
+        <div class="project-card-content">
+          <div class="project-tags" aria-label="Project tags">
+            <span>Software</span>
+          </div>
+          <div class="project-title">
+            <img class="project-title-image" src="" alt="" hidden>
+            <h2>Manium</h2>
+          </div>
+          <p>Projects that span electronics and embedded software can appear under both filters.</p>
+          <div class="project-card-details" id="project-6-details" hidden>
+            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
+          </div>
+        </div>
+      </article>
+    
+      <article class="project-card filter-item" data-tags="software" tabindex="0" role="button" aria-expanded="false" aria-controls="project-6-details">
+        <div class="project-card-content">
+          <div class="project-tags" aria-label="Project tags">
+            <span>Software</span>
+          </div>
+          <div class="project-title">
+            <img class="project-title-image" src="" alt="" hidden>
+            <h2>Godot</h2>
+          </div>
+          <p>Projects that span electronics and embedded software can appear under both filters.</p>
+          <div class="project-card-details" id="project-6-details" hidden>
+            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card filter-item" data-tags="software" tabindex="0" role="button" aria-expanded="false" aria-controls="project-6-details">
+        <div class="project-card-content">
+          <div class="project-tags" aria-label="Project tags">
+            <span>Software</span>
+          </div>
+          <div class="project-title">
+            <img class="project-title-image" src="" alt="" hidden>
+            <h2>Qt</h2>
+          </div>
+          <p>Projects that span electronics and embedded software can appear under both filters.</p>
+          <div class="project-card-details" id="project-6-details" hidden>
+            <p>Add the full write-up here: how it works, what you learned, links to code or demos, and any additional images.</p>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <p class="no-results" hidden>No projects match the selected tags.</p>
   </main>
 
   <footer class="site-footer"><div>© Siyan — Portfolio</div></footer>
+  <script src="js/tag-filters.js"></script>
+  <script src="js/projects.js"></script>
 </body>
 </html>
