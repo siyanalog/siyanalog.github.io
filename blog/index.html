@@ -21,9 +21,8 @@
 
   <main>
     <section class="hero">
-      <p class="eyebrow">Blog</p>
-      <h1>Notes & Writeups</h1>
-      <div class="placeholder">Use this page for engineering writeups, build logs, lessons learned, tutorials, or personal notes.</div>
+      <p class="eyebrow">Notes & ideas & Writeups</p>
+      <h1>Blog?</h1>
     </section>
 
     <!--
@@ -34,32 +33,24 @@
     -->
     <section class="filters" aria-label="Filter posts by tags">
       <div class="filter-list" role="group" aria-label="Post tags">
-        <button class="filter-button" type="button" data-filter="topic1" aria-pressed="false">Topic 1</button>
-        <button class="filter-button" type="button" data-filter="topic2" aria-pressed="false">Topic 2</button>
-        <button class="filter-button" type="button" data-filter="topic3" aria-pressed="false">Topic 3</button>
+        <button class="filter-button" type="button" data-filter="technical" aria-pressed="false">technical</button>
       </div>
       <button class="filter-clear" type="button">Clear</button>
     </section>
 
     <!--
       To tag a post, add tags to data-tags separated by spaces, e.g.
-      data-tags="topic1" or data-tags="topic1 topic2".
+      data-tags="courses" or data-tags="courses firmware".
     -->
     <section class="section">
-      <article class="entry filter-item" data-tags="topic1">
-        <h2>Blog Post 01</h2>
-        <p class="entry-meta">Date · Topic</p>
-        <p>Short blog-post summary placeholder.</p>
-      </article>
-      <article class="entry filter-item" data-tags="topic2">
-        <h2>Blog Post 02</h2>
-        <p class="entry-meta">Date · Topic</p>
-        <p>Short blog-post summary placeholder.</p>
-      </article>
-      <article class="entry filter-item" data-tags="topic3">
-        <h2>Blog Post 03</h2>
-        <p class="entry-meta">Date · Topic</p>
-        <p>Short blog-post summary placeholder.</p>
+      <article class="blog-entry filter-item" data-tags="technical">
+        <a class="blog-entry-link" href="blog-post-01.html" aria-labelledby="post-01-title">
+          <h2 id="post-01-title">Journey to Embedded Engineering</h2>
+          <p>TBC</p>
+          <div class="project-tags blog-tags" aria-label="Post tags">
+            <span>technical</span>
+          </div>
+        </a>
       </article>
     </section>
 

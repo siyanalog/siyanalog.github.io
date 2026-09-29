@@ -1,48 +1,58 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <script src="/js/site-mode.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Projects</title>
-  <link rel="stylesheet" href="../css/styles.css">
-</head>
-<body>
-  <header class="site-header">
-    <nav class="nav" aria-label="Main navigation">
-      <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/projects/" aria-current="page">Projects</a>
-        <a href="/experience/">Experience</a>
-        <a href="/blog/">Blog</a>
-      </div>
-    </nav>
-  </header>
+  <head>
+    <meta charset="utf-8">
+    <script src="/js/site-mode.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Projects</title>
+    <link rel="stylesheet" href="../css/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/projects/" aria-current="page">Projects</a>
+          <a href="/experience/">Experience</a>
+          <a href="/blog/">Blog</a>
+        </div>
+      </nav>
+    </header>
 
-  <main>
-    <section class="hero project-hero">
-      <p class="eyebrow">what I've been doing</p>
-      <h1>Projects</h1>
-    </section>
+    <main>
+      <section class="hero project-hero">
+        <p class="eyebrow">what I've been doing</p>
+        <h1>Projects</h1>
+      </section>
 
-    <!--
+      <!--
       MULTI-SELECT TAG FILTERS
       Add buttons here for new tags. No tag selected = show every project.
       Example: <button class="filter-button" type="button" data-filter="robotics" aria-pressed="false">Robotics</button>
       Then add robotics to the matching project cards' data-tags.
     -->
-    <section class="filters" aria-label="Filter projects by tags">
-      <div class="filter-list" role="group" aria-label="Project tags">
-        <button class="filter-button" type="button" data-filter="hardware" aria-pressed="false">Hardware</button>
-        <button class="filter-button" type="button" data-filter="firmware" aria-pressed="false">Firmware</button>
-        <button class="filter-button" type="button" data-filter="software" aria-pressed="false">Software</button>
-      </div>
-      <button class="filter-clear" type="button">Clear</button>
-    </section>
+      <section class="filters" aria-label="Filter projects by tags">
+        <div class="filter-list" role="group" aria-label="Project tags">
+          <button class="filter-button" type="button" data-filter="hardware"
+            aria-pressed="false">Hardware</button>
+          <button class="filter-button" type="button" data-filter="firmware"
+            aria-pressed="false">Firmware</button>
+          <button class="filter-button" type="button" data-filter="software"
+            aria-pressed="false">Software</button>
+        </div>
+        <button class="filter-clear" type="button">Clear</button>
+      </section>
 
-    <!--
+      <!--
       PROJECT LIST
       One project per row, image (optional) on the right.
+
+      To reorder projects, just change the --order number in each card's
+      style="--order: N" attribute — no need to cut/paste the HTML block.
+      Lower numbers show first. Numbers are spaced by 10 (10, 20, 30, ...)
+      so you can slot a new project in between two existing ones (e.g. 25)
+      without renumbering everything else. Source order in the file no
+      longer matters for display order.
 
       To tag a project, add tags to data-tags separated by spaces.
 
@@ -78,491 +88,798 @@
         body.
     -->
 
-    <!--Hardware-->
+      <!--Hardware-->
 
-    <section class="project-grid" aria-label="Projects">
+      <section class="project-grid" aria-label="Projects">
 
-      <article class="project-card filter-item" data-tags="hardware" data-slug="radio-receiver" tabindex="0" role="button" aria-expanded="false">
-        <div class="project-card-top">
-          <div class="project-card-content">
-            <div class="project-tags" aria-label="Project tags">
-              <span>Hardware</span>
+        <article class="project-card filter-item" data-tags="hardware firmware"
+          data-slug="radio-receiver" style="--order: 10" tabindex="0"
+          role="button" aria-expanded="false">
+          <div class="project-card-top">
+            <div class="project-card-content">
+              <div class="project-tags" aria-label="Project tags">
+                <span>Hardware</span>
+                <span>Firmware</span>
+              </div>
+
+              <h2>Radio Receiver</h2>
+
+              <p class="project-summary">
+                A Linux-based software-defined radio receiver in C++ designed to
+                continuously process and decode 1090 MHz ADS-B transmissions
+                from an RTL-SDR.
+              </p>
+
+              <div class="tech-stack">
+                <span>C++</span>
+                <span>Linux</span>
+                <span>RTL-SDR</span>
+                <span>GNU Radio</span>
+                <span>DSP</span>
+              </div>
+
+              <!--
+        Add real links here, then remove the comment markers, e.g.:
+        <div class="project-links">
+          <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub">
+            <img src="../icons/github.svg" alt="" width="20" height="20">
+          </a>
+          <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link">
+            <img src="../icons/external-link.svg" alt="" width="20" height="20">
+          </a>
+        </div>
+      -->
             </div>
-            <h2>Radio Receiver</h2>
-            <p class="project-summary">Short description of the project. Replace this text with what you built, the problem it solves, and the technologies involved.</p>
-            <div class="tech-stack">
-              <span>Tech 1</span>
-              <span>Tech 2</span>
-              <span>Tech 3</span>
+
+            <img class="project-card-image" src alt hidden>
+          </div>
+
+          <div class="project-card-details" hidden>
+            <div class="accordion">
+
+              <div class="accordion-item">
+                <button type="button" class="accordion-toggle"
+                  aria-expanded="false">
+                  <span>System Overview</span>
+                  <img class="accordion-chevron" src="../icons/chevron-down.svg"
+                    alt width="14" height="14">
+                </button>
+
+                <div class="accordion-body" hidden>
+                  <p>
+                    The receiver operates around the 1090 MHz ADS-B band and
+                    processes a continuous stream of complex I/Q samples from
+                    the RTL-SDR. It supports both live SDR input and prerecorded
+                    I/Q files through a shared sample-source interface.
+                  </p>
+
+                  <p>
+                    GNU Radio is used as a reference and visualization
+                    environment for validating filters, spectrum behavior, and
+                    recorded RF captures.
+                  </p>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button type="button" class="accordion-toggle"
+                  aria-expanded="false">
+                  <span>DSP decoding</span>
+                  <img class="accordion-chevron" src="../icons/chevron-down.svg"
+                    alt width="14" height="14">
+                </button>
+
+                <div class="accordion-body" hidden>
+                  <p>
+                    Raw samples are processed through a custom C++ DSP pipeline
+                    consisting of:
+                  </p>
+
+                  <ul>
+                    <li>I/Q normalization and power estimation</li>
+                    <li>noise-floor estimation</li>
+                    <li>ADS-B preamble detection</li>
+                    <li>symbol synchronization</li>
+                    <li>pulse-position demodulation</li>
+                    <li>FFT-based spectrum analysis</li>
+                  </ul>
+
+                  <p>
+                    Detected transmissions are converted into 56-bit or 112-bit
+                    Mode-S frames and validated using CRC checks
+                  </p>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button type="button" class="accordion-toggle"
+                  aria-expanded="false">
+                  <span>Future Expansion</span>
+                  <img class="accordion-chevron" src="../icons/chevron-down.svg"
+                    alt width="14" height="14">
+                </button>
+
+                <div class="accordion-body" hidden>
+                  <p>
+                    satellite telemetry someday
+                  </p>
+                </div>
+              </div>
+
             </div>
-            <!--
+          </div>
+        </article>
+
+        <article class="project-card filter-item" data-tags="hardware"
+          data-slug="low-noise-amplifier" style="--order: 20" tabindex="0"
+          role="button" aria-expanded="false">
+          <div class="project-card-top">
+            <div class="project-card-content">
+              <div class="project-tags" aria-label="Project tags">
+                <span>Hardware</span>
+              </div>
+              <h2>Low Noise Amplifier</h2>
+              <p class="project-summary">A 1 GHz low-noise amplifier designed in
+                Keysight ADS, implementing stability and impedance matching
+                networks and validating performance through EM simulation.</p>
+              <div class="tech-stack">
+                <span>RF</span>
+                <span>Keysight ADS</span>
+              </div>
+              <!--
               Add real links here, then remove the comment markers, e.g.:
               <div class="project-links">
               <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="../icons/github.svg" alt="" width="20" height="20"></a>
               <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="../icons/external-link.svg" alt="" width="20" height="20"></a>
               </div>
             -->
-          </div>
-          <img class="project-card-image" src="" alt="" hidden>
-        </div>
-        <div class="project-card-details" hidden>
-          <div class="accordion">
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>More Details</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Add more detail here.</p>
-              </div>
             </div>
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>Section Name</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Duplicate this .accordion-item block for more sections.</p>
-              </div>
-            </div>
+            <img class="project-card-image" src alt hidden>
           </div>
-        </div>
-      </article>
+          <div class="project-card-details" hidden>
+            <div class="accordion">
+              <p>This is an ongoing project, details will be added later</p>
+            </div>
+          </article>
 
-      <article class="project-card filter-item" data-tags="hardware" data-slug="low-noise-amplifier" tabindex="0" role="button" aria-expanded="false">
-        <div class="project-card-top">
-          <div class="project-card-content">
-            <div class="project-tags" aria-label="Project tags">
-              <span>Hardware</span>
-            </div>
-            <h2>Low Noise Amplifier</h2>
-            <p class="project-summary">Short description of a firmware or software project goes here.</p>
-            <div class="tech-stack">
-              <span>Tech 1</span>
-              <span>Tech 2</span>
-              <span>Tech 3</span>
-            </div>
-            <!--
-              Add real links here, then remove the comment markers, e.g.:
-              <div class="project-links">
-              <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="../icons/github.svg" alt="" width="20" height="20"></a>
-              <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="../icons/external-link.svg" alt="" width="20" height="20"></a>
-              </div>
-            -->
-          </div>
-          <img class="project-card-image" src="" alt="" hidden>
-        </div>
-        <div class="project-card-details" hidden>
-          <div class="accordion">
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>More Details</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Add more detail here.</p>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>Section Name</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Duplicate this .accordion-item block for more sections.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
+          <article class="project-card filter-item"
+            data-tags="hardware firmware"
+            data-slug="autonomous-satellite-tracking-platform"
+            style="--order: 30"
+            tabindex="0"
+            role="button"
+            aria-expanded="false">
 
-      <article class="project-card filter-item" data-tags="hardware firmware" data-slug="motor-control-platform" tabindex="0" role="button" aria-expanded="false">
-        <div class="project-card-top">
-          <div class="project-card-content">
-            <div class="project-tags" aria-label="Project tags">
-              <span>Hardware</span>
-              <span>Firmware</span>
-            </div>
-            <h2>Motor control platform</h2>
-            <p class="project-summary">Projects that span electronics and embedded software can appear under both filters.</p>
-            <div class="tech-stack">
-              <span>Tech 1</span>
-              <span>Tech 2</span>
-              <span>Tech 3</span>
-            </div>
-            <!--
-              Add real links here, then remove the comment markers, e.g.:
-              <div class="project-links">
-              <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="../icons/github.svg" alt="" width="20" height="20"></a>
-              <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="../icons/external-link.svg" alt="" width="20" height="20"></a>
-              </div>
-            -->
-          </div>
-          <img class="project-card-image" src="" alt="" hidden>
-        </div>
-        <div class="project-card-details" hidden>
-          <div class="accordion">
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>More Details</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Add more detail here.</p>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>Section Name</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Duplicate this .accordion-item block for more sections.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
+            <div class="project-card-top">
+              <div class="project-card-content">
 
-      <!--Firmware-->
+                <div class="project-tags" aria-label="Project tags">
+                  <span>Hardware</span>
+                  <span>Firmware</span>
+                </div>
 
-      <article class="project-card filter-item" data-tags="firmware" data-slug="fpga-digital-design" tabindex="0" role="button" aria-expanded="false">
-        <div class="project-card-top">
-          <div class="project-card-content">
-            <div class="project-tags" aria-label="Project tags">
-              <span>Firmware</span>
-            </div>
-            <h2>FPGA Digital Design</h2>
-            <p class="project-summary">Short description of a hardware project goes here.</p>
-            <div class="tech-stack">
-              <span>Tech 1</span>
-              <span>Tech 2</span>
-              <span>Tech 3</span>
-            </div>
-            <!--
-              Add real links here, then remove the comment markers, e.g.:
-              <div class="project-links">
-              <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="../icons/github.svg" alt="" width="20" height="20"></a>
-              <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="../icons/external-link.svg" alt="" width="20" height="20"></a>
-              </div>
-            -->
-          </div>
-          <img class="project-card-image" src="" alt="" hidden>
-        </div>
-        <div class="project-card-details" hidden>
-          <div class="accordion">
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>More Details</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Add more detail here.</p>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>Section Name</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Duplicate this .accordion-item block for more sections.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
+                <h2>Autonomous Satellite Tracking Station</h2>
 
-      <article class="project-card filter-item" data-tags="firmware" data-slug="wireless-geolocation-scanner" tabindex="0" role="button" aria-expanded="false">
-        <div class="project-card-top">
-          <div class="project-card-content">
-            <div class="project-tags" aria-label="Project tags">
-              <span>Firmware</span>
-            </div>
-            <h2>Wireless Geolocation Scanner</h2>
-            <p class="project-summary">Projects that span electronics and embedded software can appear under both filters.</p>
-            <div class="tech-stack">
-              <span>Tech 1</span>
-              <span>Tech 2</span>
-              <span>Tech 3</span>
-            </div>
-            <!--
-              Add real links here, then remove the comment markers, e.g.:
-              <div class="project-links">
-              <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="../icons/github.svg" alt="" width="20" height="20"></a>
-              <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="../icons/external-link.svg" alt="" width="20" height="20"></a>
-              </div>
-            -->
-          </div>
-          <img class="project-card-image" src="" alt="" hidden>
-        </div>
-        <div class="project-card-details" hidden>
-          <div class="accordion">
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>More Details</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Add more detail here.</p>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>Section Name</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Duplicate this .accordion-item block for more sections.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
+                <p class="project-summary">
+                  An autonomous satellite tracking station designed to predict
+                  satellite passes,
+                  track selected targets using a closed-loop pan-tilt system,
+                  and expose live
+                  tracking telemetry through a web interface.
+                </p>
 
-      <article class="project-card filter-item" data-tags="firmware" data-slug="esp32-voice-recognition-device" tabindex="0" role="button" aria-expanded="false">
-        <div class="project-card-top">
-          <div class="project-card-content">
-            <div class="project-tags" aria-label="Project tags">
-              <span>Firmware</span>
-            </div>
-            <h2>ESP32 Voice Recognition Device</h2>
-            <p class="project-summary">Projects that span electronics and embedded software can appear under both filters.</p>
-            <div class="tech-stack">
-              <span>Tech 1</span>
-              <span>Tech 2</span>
-              <span>Tech 3</span>
-            </div>
-            <!--
-              Add real links here, then remove the comment markers, e.g.:
-              <div class="project-links">
-              <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="../icons/github.svg" alt="" width="20" height="20"></a>
-              <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="../icons/external-link.svg" alt="" width="20" height="20"></a>
-              </div>
-            -->
-          </div>
-          <img class="project-card-image" src="" alt="" hidden>
-        </div>
-        <div class="project-card-details" hidden>
-          <div class="accordion">
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>More Details</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Add more detail here.</p>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>Section Name</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Duplicate this .accordion-item block for more sections.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
+                <div class="tech-stack">
+                  <span>STM32</span>
+                  <span>ESP32</span>
+                  <span>FreeRTOS</span>
+                  <span>PWM</span>
+                  <span>UART</span>
+                </div>
 
-      <article class="project-card filter-item" data-tags="firmware" data-slug="temperature-driver" tabindex="0" role="button" aria-expanded="false">
-        <div class="project-card-top">
-          <div class="project-card-content">
-            <div class="project-tags" aria-label="Project tags">
-              <span>Firmware</span>
-            </div>
-            <h2>Temperature Driver</h2>
-            <p class="project-summary">Projects that span electronics and embedded software can appear under both filters.</p>
-            <div class="tech-stack">
-              <span>Tech 1</span>
-              <span>Tech 2</span>
-              <span>Tech 3</span>
-            </div>
-            <!--
-              Add real links here, then remove the comment markers, e.g.:
-              <div class="project-links">
-              <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="../icons/github.svg" alt="" width="20" height="20"></a>
-              <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="../icons/external-link.svg" alt="" width="20" height="20"></a>
-              </div>
-            -->
-          </div>
-          <img class="project-card-image" src="" alt="" hidden>
+                <!--
+        Add real links here, then remove the comment markers, e.g.:
+        <div class="project-links">
+          <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub">
+            <img src="../icons/github.svg" alt="" width="20" height="20">
+          </a>
+          <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link">
+            <img src="../icons/external-link.svg" alt="" width="20" height="20">
+          </a>
         </div>
-        <div class="project-card-details" hidden>
-          <div class="accordion">
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>More Details</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Add more detail here.</p>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>Section Name</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Duplicate this .accordion-item block for more sections.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
+      -->
 
-      <!--Software-->
-      <article class="project-card filter-item" data-tags="software" data-slug="manium" tabindex="0" role="button" aria-expanded="false">
-        <div class="project-card-top">
-          <div class="project-card-content">
-            <div class="project-tags" aria-label="Project tags">
-              <span>Software</span>
-            </div>
-            <h2>Manium</h2>
-            <p class="project-summary">Projects that span electronics and embedded software can appear under both filters.</p>
-            <div class="tech-stack">
-              <span>Tech 1</span>
-              <span>Tech 2</span>
-              <span>Tech 3</span>
-            </div>
-            <!--
-              Add real links here, then remove the comment markers, e.g.:
-              <div class="project-links">
-              <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="../icons/github.svg" alt="" width="20" height="20"></a>
-              <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="../icons/external-link.svg" alt="" width="20" height="20"></a>
               </div>
-            -->
-          </div>
-          <img class="project-card-image" src="" alt="" hidden>
-        </div>
-        <div class="project-card-details" hidden>
-          <div class="accordion">
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>More Details</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Add more detail here.</p>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>Section Name</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Duplicate this .accordion-item block for more sections.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
 
-      <article class="project-card filter-item" data-tags="software" data-slug="godot" tabindex="0" role="button" aria-expanded="false">
-        <div class="project-card-top">
-          <div class="project-card-content">
-            <div class="project-tags" aria-label="Project tags">
-              <span>Software</span>
+              <img class="project-card-image" src alt hidden>
             </div>
-            <h2>Godot</h2>
-            <p class="project-summary">Projects that span electronics and embedded software can appear under both filters.</p>
-            <div class="tech-stack">
-              <span>Tech 1</span>
-              <span>Tech 2</span>
-              <span>Tech 3</span>
-            </div>
-            <!--
-              Add real links here, then remove the comment markers, e.g.:
-              <div class="project-links">
-              <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="../icons/github.svg" alt="" width="20" height="20"></a>
-              <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="../icons/external-link.svg" alt="" width="20" height="20"></a>
-              </div>
-            -->
-          </div>
-          <img class="project-card-image" src="" alt="" hidden>
-        </div>
-        <div class="project-card-details" hidden>
-          <div class="accordion">
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>More Details</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Add more detail here.</p>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>Section Name</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Duplicate this .accordion-item block for more sections.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
 
-      <article class="project-card filter-item" data-tags="software" data-slug="qt" tabindex="0" role="button" aria-expanded="false">
-        <div class="project-card-top">
-          <div class="project-card-content">
-            <div class="project-tags" aria-label="Project tags">
-              <span>Software</span>
-            </div>
-            <h2>Qt</h2>
-            <p class="project-summary">Projects that span electronics and embedded software can appear under both filters.</p>
-            <div class="tech-stack">
-              <span>Tech 1</span>
-              <span>Tech 2</span>
-              <span>Tech 3</span>
-            </div>
-            <!--
-              Add real links here, then remove the comment markers, e.g.:
-              <div class="project-links">
-              <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="../icons/github.svg" alt="" width="20" height="20"></a>
-              <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link"><img src="../icons/external-link.svg" alt="" width="20" height="20"></a>
+            <div class="project-card-details" hidden>
+              <div class="accordion">
+
+                <!-- System Overview -->
+                <div class="accordion-item">
+                  <button type="button" class="accordion-toggle"
+                    aria-expanded="false">
+                    <span>System Overview</span>
+                    <img
+                      class="accordion-chevron"
+                      src="../icons/chevron-down.svg"
+                      alt
+                      width="14"
+                      height="14">
+                  </button>
+
+                  <div class="accordion-body" hidden>
+                    <p>
+                      The system uses <strong>satellite orbital data,
+                        ground-station position,
+                        and precise timing</strong> to calculate the azimuth and
+                      elevation of
+                      selected satellites during visible passes.
+                    </p>
+
+                    <p>
+                      A tracking state machine manages the platform through
+                      <strong>idle, pre-positioning, acquisition, tracking, and
+                        parking</strong>,
+                      while generated pointing commands are applied to the pan
+                      and tilt axes
+                      through closed-loop motion control.
+                    </p>
+
+                    <p>
+                      A web interface provides access to the satellite watch
+                      list, upcoming
+                      passes, predicted and measured pointing angles, tracking
+                      error, and
+                      overall system status.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Firmware Architecture -->
+                <div class="accordion-item">
+                  <button type="button" class="accordion-toggle"
+                    aria-expanded="false">
+                    <span>Firmware Architecture</span>
+                    <img
+                      class="accordion-chevron"
+                      src="../icons/chevron-down.svg"
+                      alt
+                      width="14"
+                      height="14">
+                  </button>
+
+                  <div class="accordion-body" hidden>
+                    <p>
+                      The system uses an <strong>STM32 running FreeRTOS for
+                        real-time tracking
+                        and motion control</strong>, paired with an
+                      <strong>ESP32 running ESP-IDF for networking and the web
+                        interface</strong>.
+                    </p>
+
+                    <ul>
+                      <li>
+                        FreeRTOS tasks for satellite tracking, trajectory
+                        generation,
+                        motor control, communication, and diagnostics
+                      </li>
+                      <li>
+                        Encoder-based closed-loop pan and tilt control
+                      </li>
+                      <li>
+                        Hardware timer-based PWM motor control
+                      </li>
+                      <li>
+                        UART communication between the STM32 and ESP32
+                      </li>
+                      <li>
+                        ESP32-based Wi-Fi connectivity and live web telemetry
+                      </li>
+                      <li>
+                        Tracking state management, homing, position limits, and
+                        fault handling
+                      </li>
+                    </ul>
+
+                    <p>
+                      A Python-based test environment is used to simulate
+                      satellite trajectories
+                      and validate firmware behavior under conditions such as
+                      encoder noise,
+                      communication errors, actuator delay, and connectivity
+                      loss.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <button type="button" class="accordion-toggle"
+                    aria-expanded="false">
+                    <span>Custom PCB</span>
+                    <img
+                      class="accordion-chevron"
+                      src="../icons/chevron-down.svg"
+                      alt
+                      width="14"
+                      height="14">
+                  </button>
+
+                  <div class="accordion-body" hidden>
+                    <p>
+                      4-layer PCB in design
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Future Expansion -->
+                <div class="accordion-item">
+                  <button type="button" class="accordion-toggle"
+                    aria-expanded="false">
+                    <span>Future Expansion</span>
+                    <img
+                      class="accordion-chevron"
+                      src="../icons/chevron-down.svg"
+                      alt
+                      width="14"
+                      height="14">
+                  </button>
+
+                  <div class="accordion-body" hidden>
+                    <p>
+                      maybe adding a
+                      <strong>directional antenna and software-defined
+                        radio</strong>
+                      to receive supported satellite transmissions.
+                    </p>
+                  </div>
+                </div>
+
               </div>
-            -->
-          </div>
-          <img class="project-card-image" src="" alt="" hidden>
+            </div>
+          </article>
+
+          <!--Firmware-->
+
+          <article class="project-card filter-item" data-tags="firmware"
+            data-slug="fpga-digital-design" style="--order: 40" tabindex="0"
+            role="button" aria-expanded="false">
+
+            <div class="project-card-top">
+              <div class="project-card-content">
+
+                <div class="project-tags" aria-label="Project tags">
+                  <span>Firmware</span>
+                </div>
+
+                <h2>FPGA Digital Design</h2>
+
+                <p class="project-summary">
+                  FPGA digital design projects developed on AMD Kria KV260 and
+                  PYNQ-Z1
+                  boards using SystemVerilog and Verilog, verified through
+                  simulation and
+                  waveform analysis in Vivado and GTKWave.
+                </p>
+
+                <div class="tech-stack">
+                  <span>SystemVerilog</span>
+                  <span>Verilog</span>
+                  <span>Vivado</span>
+                  <span>GTKWave</span>
+                  <span>Kria KV260</span>
+                  <span>PYNQ-Z1</span>
+                </div>
+
+                <!--
+      Add real links here, then remove the comment markers, e.g.:
+      <div class="project-links">
+        <a href="#" target="_blank" rel="noopener"
+          aria-label="View source on GitHub">
+          <img src="../icons/github.svg" alt="" width="20" height="20">
+        </a>
+        <a href="#" target="_blank" rel="noopener"
+          aria-label="View live demo or link">
+          <img src="../icons/external-link.svg" alt="" width="20" height="20">
+        </a>
+      </div>
+      -->
+
+              </div>
+
+              <img class="project-card-image" src alt hidden>
+            </div>
+
+            <div class="project-card-details" hidden>
+              <div class="accordion">
+
+                <div class="accordion-item">
+                  <button type="button" class="accordion-toggle"
+                    aria-expanded="false">
+                    <span>Arithmetic Logic Unit</span>
+                    <img class="accordion-chevron"
+                      src="../icons/chevron-down.svg" alt width="14"
+                      height="14">
+                  </button>
+
+                  <div class="accordion-body" hidden>
+                    <p>
+                      A standard ALU supporting addition, subtraction,
+                      multiplication,
+                      and squaring with board switch inputs, built from
+                      full-adder and
+                      multi-bit adder/subtractor modules.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <button type="button" class="accordion-toggle"
+                    aria-expanded="false">
+                    <span>Wordle Game</span>
+                    <img class="accordion-chevron"
+                      src="../icons/chevron-down.svg" alt width="14"
+                      height="14">
+                  </button>
+
+                  <div class="accordion-body" hidden>
+                    <p>
+                      A four-letter Wordle game implemented with an FSM handling
+                      guess
+                      processing, repeated-letter matching, game state, and
+                      win/loss
+                      conditions. A testbench covers different gameplay
+                      scenarios.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <button type="button" class="accordion-toggle"
+                    aria-expanded="false">
+                    <span>Fixed-Point Tanh Accelerator</span>
+                    <img class="accordion-chevron"
+                      src="../icons/chevron-down.svg" alt width="14"
+                      height="14">
+                  </button>
+
+                  <div class="accordion-body" hidden>
+                    <p>
+                      A hardware accelerator for the hyperbolic tangent function
+                      using
+                      an 11th-degree Taylor approximation and fixed-point
+                      arithmetic.
+                      The multiplier-adder datapath was pipelined to improve
+                      timing
+                      performance through throughput, critical-path, and latency
+                      analysis.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <button type="button" class="accordion-toggle"
+                    aria-expanded="false">
+                    <span>Matrix-Vector Multiplication Accelerator</span>
+                    <img class="accordion-chevron"
+                      src="../icons/chevron-down.svg" alt width="14"
+                      height="14">
+                  </button>
+
+                  <div class="accordion-body" hidden>
+                    <p>
+                      A matrix-vector multiplication accelerator using 8-lane
+                      dot-product
+                      units, on-chip memory, and FSM control logic. Designed
+                      around a
+                      350 MHz timing target and inspired by the matrix-vector
+                      unit used
+                      in Microsoft's BrainWave accelerator.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <button type="button" class="accordion-toggle"
+                    aria-expanded="false">
+                    <span>RISC-V 5-Stage Pipelined Processor</span>
+                    <img class="accordion-chevron"
+                      src="../icons/chevron-down.svg" alt width="14"
+                      height="14">
+                  </button>
+
+                  <div class="accordion-body" hidden>
+                    <p>
+                      Developing a 32-bit RISC-V processor in Verilog,
+                      progressing from
+                      a single-cycle datapath to a five-stage fetch, decode,
+                      execute,
+                      memory, and writeback pipeline.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card filter-item" data-tags="firmware"
+            data-slug="wireless-geolocation-scanner" style="--order: 50"
+            tabindex="0" role="button" aria-expanded="false">
+            <div class="project-card-top">
+              <div class="project-card-content">
+
+                <div class="project-tags" aria-label="Project tags">
+                  <span>Firmware</span>
+                </div>
+
+                <h2>Wireless Telemetry Platform</h2>
+
+                <p class="project-summary">
+                  A low-level embedded telemetry platform designed to
+                  continuously collect,
+                  timestamp, and log nearby Wi-Fi and Bluetooth activity.
+                </p>
+
+                <div class="tech-stack">
+                  <span>ESP32</span>
+                  <span>FreeRTOS</span>
+                  <span>SPI</span>
+                  <span>UART</span>
+                  <span>I²C</span>
+                </div>
+
+                <!--
+        Add real links here, then remove the comment markers, e.g.:
+
+        <div class="project-links">
+          <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub">
+            <img src="../icons/github.svg" alt="" width="20" height="20">
+          </a>
+
+          <a href="#" target="_blank" rel="noopener" aria-label="View live demo or link">
+            <img src="../icons/external-link.svg" alt="" width="20" height="20">
+          </a>
         </div>
-        <div class="project-card-details" hidden>
-          <div class="accordion">
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>More Details</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Add more detail here.</p>
+      -->
+
+              </div>
+
+              <img class="project-card-image" src alt hidden>
+            </div>
+
+            <div class="project-card-details" hidden>
+              <div class="accordion">
+
+                <div class="accordion-item">
+                  <button type="button" class="accordion-toggle"
+                    aria-expanded="false">
+                    <span>System Overview</span>
+                    <img class="accordion-chevron"
+                      src="../icons/chevron-down.svg" alt width="14"
+                      height="14">
+                  </button>
+
+                  <div class="accordion-body" hidden>
+                    <p>
+                      The platform collects multiple telemetry sources
+                      concurrently,
+                      including <strong>GNSS position and timing data</strong>,
+                      <strong>Wi-Fi and Bluetooth scan results</strong>, and
+                      <strong>system power measurements</strong>.
+                    </p>
+
+                    <p>
+                      Telemetry is timestamped, passed through
+                      <strong>bounded FreeRTOS queues</strong>, and written to
+                      an external
+                      microSD card. The system is designed for continuous
+                      operation with
+                      predictable memory usage and mechanisms for detecting data
+                      loss,
+                      queue saturation, and peripheral failures.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <button type="button" class="accordion-toggle"
+                    aria-expanded="false">
+                    <span>Firmware Architecture</span>
+                    <img class="accordion-chevron"
+                      src="../icons/chevron-down.svg" alt width="14"
+                      height="14">
+                  </button>
+
+                  <div class="accordion-body" hidden>
+                    <p>
+                      The firmware is developed in <strong>C</strong> using
+                      <strong>ESP-IDF</strong> and <strong>FreeRTOS</strong> on
+                      an
+                      <strong>ESP32-S3-WROOM</strong> development board.
+                    </p>
+
+                    <ul>
+                      <li>GNSS acquisition over UART with PPS-based timing</li>
+                      <li>Wi-Fi and Bluetooth Low Energy scanning</li>
+                      <li>INA226 power and current monitoring over I²C</li>
+                      <li>External microSD logging over SPI using a binary log
+                        format with CRC validation</li>
+                      <li>Concurrent FreeRTOS tasks for acquisition, processing,
+                        and storage</li>
+                      <li>Bounded queues and fixed-size buffers for predictable
+                        memory usage</li>
+                    </ul>
+                  </div>
+                </div>
+
               </div>
             </div>
-            <div class="accordion-item">
-              <button type="button" class="accordion-toggle" aria-expanded="false">
-                <span>Section Name</span>
-                <img class="accordion-chevron" src="../icons/chevron-down.svg" alt="" width="14" height="14">
-              </button>
-              <div class="accordion-body" hidden>
-                <p>Duplicate this .accordion-item block for more sections.</p>
-              </div>
-            </div>
-          </div>
+          </article>
+
+          
+
+<article class="project-card filter-item" data-tags="fpga"
+  data-slug="fpga-digital-downconverter" style="--order: 70" tabindex="0"
+  role="button" aria-expanded="false">
+
+  <div class="project-card-top">
+    <div class="project-card-content">
+
+      <div class="project-tags" aria-label="Project tags">
+        <span>FPGA</span>
+      </div>
+
+      <h2>FPGA Digital Downconverter</h2>
+
+      <p class="project-summary">
+        A hardware digital downconverter implemented on a PYNQ-Z1 FPGA to
+        select a frequency channel from a wider-band signal and output
+        filtered baseband I/Q data.
+      </p>
+
+      <div class="tech-stack">
+        <span>SystemVerilog</span>
+        <span>PYNQ-Z1</span>
+        <span>Vivado</span>
+        <span>Cocotb</span>
+        <span>Python</span>
+      </div>
+
+      <!--
+      <div class="project-links">
+        <a href="#" target="_blank" rel="noopener"
+          aria-label="View source on GitHub">
+          <img src="../icons/github.svg" alt="" width="20" height="20">
+        </a>
+      </div>
+      -->
+
+    </div>
+
+    <img class="project-card-image" src alt hidden>
+  </div>
+
+  <div class="project-card-details" hidden>
+    <div class="accordion">
+
+      <div class="accordion-item">
+        <button type="button" class="accordion-toggle"
+          aria-expanded="false">
+          <span>System Overview</span>
+          <img class="accordion-chevron"
+            src="../icons/chevron-down.svg" alt width="14"
+            height="14">
+        </button>
+
+        <div class="accordion-body" hidden>
+          <p>
+            Simulated multi-channel radio signals are generated in Python
+            and streamed to the FPGA. The FPGA tunes to a selected frequency,
+            shifts the channel to baseband, filters unwanted frequency
+            content, and outputs I/Q samples for further SDR processing.
+          </p>
+
+          <p>
+            The project implements one complete and independently testable
+            signal-processing subsystem that can later be integrated into a
+            larger SDR receiver.
+          </p>
         </div>
-      </article>
+      </div>
 
-    </section>
+      <div class="accordion-item">
+        <button type="button" class="accordion-toggle"
+          aria-expanded="false">
+          <span>Architecture</span>
+          <img class="accordion-chevron"
+            src="../icons/chevron-down.svg" alt width="14"
+            height="14">
+        </button>
 
-    <p class="no-results" hidden>No projects match the selected tags.</p>
-  </main>
+        <div class="accordion-body" hidden>
 
-  <footer class="site-footer"><div>© Siyan — Portfolio</div></footer>
-  <script src="../js/tag-filters.js"></script>
-  <script src="../js/projects.js"></script>
-</body>
-</html>
+          <p>
+            The FPGA datapath implements an NCO, complex mixer, and FIR
+            filter to tune to a selected frequency, shift it to baseband,
+            and isolate the desired channel.
+          </p>
+
+          <div class="architecture-flow">
+
+            <div class="arch-node">
+              <strong>Python Test Signal</strong>
+              <span>Simulated multi-channel input</span>
+            </div>
+
+            <div class="arch-arrow">↓</div>
+
+            <div class="arch-node">
+              <strong>ARM Processor</strong>
+              <span>Control and sample transfer</span>
+            </div>
+
+            <div class="arch-arrow">
+              <span>AXI DMA</span>
+              ↓
+            </div>
+
+            <div class="arch-node arch-fpga">
+              <strong>FPGA Digital Downconverter</strong>
+
+              <div class="fpga-pipeline">
+                <span>FIFO/NCO</span>
+                <span>→</span>
+                <span>Complex Mixer</span>
+                <span>→</span>
+                <span>FIR Filter</span>
+                <span>→</span>
+                <span>I/Q Output</span>
+              </div>
+            </div>
+
+            <div class="arch-arrow">
+              <span>AXI DMA</span>
+              ↓
+            </div>
+
+            <div class="arch-node">
+              <strong>Python Analysis</strong>
+              <span>Verify and visualize I/Q output</span>
+            </div>
+
+          </div>
+
+          <ul>
+  <li><strong>NCO</strong> generates the local oscillator based on the selected channel frequency.</li>
+  <li><strong>Complex mixer</strong> shifts the selected channel to baseband and produces I/Q samples.</li>
+  <li><strong>FIR filters</strong> remove nearby channels and unwanted frequency content.</li>
+  <li>The RTL is tested against Python DSP reference models using <strong>Cocotb</strong> and <strong>Verilator</strong>.</li>
+</ul>
+
+          <p>
+            The RTL is tested against Python DSP reference models using
+            Cocotb and Verilator, with waveform analysis in GTKWave and
+            implementation analysis in Vivado.
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</article>
+
+          <!--Software-->
+
+        </section>
+
+        <p class="no-results" hidden>No projects match the selected tags.</p>
+      </main>
+
+      <footer class="site-footer"><div>© Siyan — Portfolio</div></footer>
+      <script src="../js/tag-filters.js"></script>
+      <script src="../js/projects.js"></script>
+    </body>
+  </html>

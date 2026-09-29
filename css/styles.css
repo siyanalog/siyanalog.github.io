@@ -306,6 +306,7 @@ h2 { margin-top: 0; }
   flex-direction: column;
   overflow: hidden;
   transition: border-color .15s ease;
+  order: var(--order, 0);
 }
 .project-card:hover,
 .project-card:focus-visible { border-color: #fff; }
@@ -411,3 +412,81 @@ h2 { margin-top: 0; }
   .project-card-top { flex-direction: column; }
   .project-card-image { width: 100%; flex: 0 0 160px; }
 }
+
+.architecture-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 1.5rem 0;
+}
+
+.arch-node {
+  width: min(100%, 520px);
+  padding: 14px 18px;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.arch-node strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.arch-node span {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.arch-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+}
+
+.arch-arrow span {
+  font-size: 0.75rem;
+  opacity: 0.65;
+}
+
+.arch-fpga {
+  width: min(100%, 700px);
+}
+
+.fpga-pipeline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.fpga-pipeline span {
+  padding: 6px 9px;
+  border: 1px solid currentColor;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  opacity: 1;
+}
+/* Blog listing and article pages */
+.blog-entry { margin-bottom: 1rem; }
+.blog-entry-link {
+  display: block;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  background: #000;
+  text-decoration: none;
+  transition: border-color .15s ease;
+}
+.blog-entry-link:hover,
+.blog-entry-link:focus-visible { border-color: #fff; }
+.blog-entry-link:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.blog-read-more { text-decoration: underline; text-underline-offset: 3px; }
+.blog-article { max-width: 780px; }
+.blog-back-link { display: inline-block; margin-bottom: 2rem; }
+.blog-article .section h2:not(:first-child) { margin-top: 2rem; }
+.nav-links a[aria-current="location"] { border-bottom-color: #fff; }
+.blog-tags { margin-top: 1.25rem; }
