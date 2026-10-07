@@ -147,21 +147,86 @@
     </section>
 
     <!--
-      DESIGN TEAM (same timeline layout, no location line).
+      DESIGN TEAM (same timeline layout as co-op).
     -->
     <section class="timeline" id="panel-design-team" role="tabpanel" aria-labelledby="tab-design-team" data-panel="design-team" hidden>
       <article class="timeline-entry">
         <div class="timeline-meta">
-          <h2>Team Name</h2>
-          <p class="timeline-dates">Dates</p>
+          <h2>UW Formula Electric</h2>
+          <p class="timeline-location">Electric race car design team</p>
         </div>
         <div class="timeline-content">
-          <h3>Role Title</h3>
-          <p>Responsibilities, technical work, impact, images, or links.</p>
+          <h3>Firmware Team Member</h3>
+        </div>
+      </article>
+
+      <article class="timeline-entry">
+        <div class="timeline-meta">
+          <h2>UWASIC</h2>
+          <p class="timeline-location">ASIC and FPGA design team</p>
+        </div>
+        <div class="timeline-content">
+          <h3>Analog Design Team Member</h3>
+          <ul>
+            <li class="filter-item" data-tags="hardware">Designed a two-stage CMOS op amp using SKY130 130nm PDK in Xschem to meet design specifications</li>
+            <li class="filter-item" data-tags="hardware">Developed ngspice testbenches to characterize DC gain, frequency response, CMRR, input/output impedance, and power consumption, iterating transistor sizing to improve performance</li>
+            <li class="filter-item" data-tags="hardware">Implemented the op-amp physical layout in KLayout, applying analog layout techniques for device matching and parasitic reduction and performing DRC/LVS verification for fabrication readiness</li>
+          </ul>
           <div class="tech-stack">
-            <span>Tech 1</span>
-            <span>Tech 2</span>
-            <span>Tech 3</span>
+            <span>SKY130</span>
+            <span>Xschem</span>
+            <span>ngspice</span>
+            <span>KLayout</span>
+            <span>DRC/LVS</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="timeline-entry">
+        <div class="timeline-meta">
+          <h2>Midnight Sun</h2>
+          <p class="timeline-location">Solar vehicle design team</p>
+        </div>
+        <div class="timeline-content">
+          <h3>Hardware Team Member</h3>
+          <ul>
+            <li class="filter-item" data-tags="hardware">Designed IMU board layout in Altium, optimizing sensor placement and grounding strategy to reduce noise coupling and improve suspension telemetry reliability</li>
+            <li class="filter-item" data-tags="hardware">Implemented shunt based current sensing system with a 16-bit ADC, enabling high-resolution voltage measurement and digital conversion to improve BMS accuracy</li>
+            <li class="filter-item" data-tags="hardware">Evaluated RF transceiver candidates for the telemetry subsystem, researched and documented design iterations</li>
+            <li class="filter-item" data-tags="hardware">Soldered SMD components on PCBs, debugged power and signal integrity during board bring-up</li>
+            <li class="filter-item" data-tags="hardware">Validated AFE voltage acquisition and BMS cell-balancing functionality through functional and system integration testing</li>
+          </ul>
+          <div class="tech-stack">
+            <span>Altium</span>
+            <span>PCB Design</span>
+            <span>IMU</span>
+            <span>ADC</span>
+            <span>BMS</span>
+            <span>RF Telemetry</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="timeline-entry">
+        <div class="timeline-meta">
+          <h2>DeepBlue</h2>
+          <p class="timeline-location">Underwater vehicle design team</p>
+        </div>
+        <div class="timeline-content">
+          <h3>Firmware Team Member</h3>
+          <ul>
+            <li class="filter-item" data-tags="firmware hardware">Implemented a custom BMS driver in C over I2C for accurate SOC estimation and voltage monitoring</li>
+            <li class="filter-item" data-tags="firmware software">Integrated microROS with FreeRTOS, creating multithreaded tasks to synchronize data and relay events to Jetson</li>
+            <li class="filter-item" data-tags="firmware hardware">Optimized UART, I2C, PWM, ADC, and DAC drivers for reliable communication between onboard sensors and actuators</li>
+            <li class="filter-item" data-tags="firmware hardware">Designed and unit-tested UART/CAN interfaces between Jetson and STM32 to pass navigation commands, sensor telemetry, and hydrophone data</li>
+          </ul>
+          <div class="tech-stack">
+            <span>C</span>
+            <span>microROS</span>
+            <span>FreeRTOS</span>
+            <span>STM32</span>
+            <span>Jetson</span>
+            <span>UART/I2C/CAN</span>
           </div>
         </div>
       </article>

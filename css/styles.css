@@ -179,6 +179,7 @@ h2 { margin-top: 0; }
 .timeline-location,
 .timeline-dates { margin: .4rem 0 0; color: var(--muted); font-size: .85rem; }
 .timeline-content h3 { margin: 0; font-weight: 400; font-size: 1.15rem; }
+#panel-design-team .timeline-content h3 { font-size: 1rem; color: var(--muted); }
 .timeline-content p { margin: .65rem 0 0; color: var(--muted); }
 .timeline-content ul {
   list-style: none;
