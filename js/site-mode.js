@@ -1,5 +1,5 @@
 // Set to false and publish to restore the full website.
-const maintenanceEnabled = false;
+const maintenanceEnabled = true;
 
 (() => {
   // Local development always shows the full site.
