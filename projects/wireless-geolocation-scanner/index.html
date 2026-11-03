@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="/assets/js/site-mode.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A low-level embedded telemetry platform designed to continuously collect, timestamp, and log nearby Wi-Fi and Bluetooth activity.">
+  <title>Wireless Telemetry Platform | Projects</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/projects/" aria-current="location">Projects</a>
+        <a href="/experience/">Experience</a>
+        <a href="/blog/">Blog</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="blog-article">
+    <a class="blog-back-link" href="/projects/">&larr; Back to projects</a>
+    <article>
+      <header class="hero">
+        <h1>Wireless Telemetry Platform</h1>
+        <p>A low-level embedded telemetry platform designed to continuously collect, timestamp, and log nearby Wi-Fi and Bluetooth activity.</p>
+        <div class="project-tags blog-tags" aria-label="Project tags">
+          <span>Firmware</span>
+        </div>
+        <div class="tech-stack">
+          <span>ESP32</span>
+          <span>FreeRTOS</span>
+          <span>SPI</span>
+          <span>UART</span>
+          <span>I²C</span>
+        </div>
+        <!--
+          LINKS (hidden). Remove the "hidden" attribute below to show them,
+          fill in each href, and delete any you don't need. Icons available in
+          /assets/icons: github, linkedin, external-link, mail.
+        -->
+        <div class="project-links" hidden>
+          <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="/assets/icons/github.svg" alt="" width="20" height="20"></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="Project link"><img src="/assets/icons/external-link.svg" alt="" width="20" height="20"></a>
+        </div>
+      </header>
+
+      <!--
+        SECTIONS. Each .proj-section is click-to-expand, separated by a divider.
+        Keep the four standard sections (System Overview, Architecture,
+        Future Expansion, Reference).
+        Inside a section's .proj-body you can add:
+          - plain paragraphs / lists
+          - a small header:      <h3 class="proj-subhead">Title</h3>
+          - a nested expansion:  copy a <div class="proj-sub"> block and give
+            its button/aria-controls/id a unique name.
+      -->
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-overview"><span>System Overview</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-overview">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+                  <p>
+                    The platform collects multiple telemetry sources
+                    concurrently,
+                    including <strong>GNSS position and timing data</strong>,
+                    <strong>Wi-Fi and Bluetooth scan results</strong>, and
+                    <strong>system power measurements</strong>.
+                  </p>
+
+                  <p>
+                    Telemetry is timestamped, passed through
+                    <strong>bounded FreeRTOS queues</strong>, and written to
+                    an external
+                    microSD card. The system is designed for continuous
+                    operation with
+                    predictable memory usage and mechanisms for detecting data
+                    loss,
+                    queue saturation, and peripheral failures.
+                  </p>
+
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-architecture"><span>Architecture</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-architecture">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+                        <p>
+                          The firmware is developed in <strong>C</strong> using
+                          <strong>ESP-IDF</strong> and <strong>FreeRTOS</strong> on
+                          an
+                          <strong>ESP32-S3-WROOM</strong> development board.
+                        </p>
+
+                        <ul>
+                          <li>GNSS acquisition over UART with PPS-based timing</li>
+                          <li>Wi-Fi and Bluetooth Low Energy scanning</li>
+                          <li>INA226 power and current monitoring over I²C</li>
+                          <li>External microSD logging over SPI using a binary log
+                            format with CRC validation</li>
+                          <li>Concurrent FreeRTOS tasks for acquisition, processing,
+                            and storage</li>
+                          <li>Bounded queues and fixed-size buffers for predictable
+                            memory usage</li>
+                        </ul>
+
+              <h3 class="proj-subhead">Custom PCB</h3>
+              <p>
+                The firmware was prototyped on the development board. The
+                platform is now migrating to a custom 30 mm square
+                <strong>four-layer Altium PCB</strong> integrating the GNSS
+                receiver (UART, PPS), microSD (SPI), and INA226 power
+                monitor (I²C) in a compact standalone design.
+              </p>
+
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-future"><span>Future Expansion</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-future">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+            <p>Migrating the Wi-Fi and Bluetooth scanning firmware from FreeRTOS to Zephyr is in progress.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-reference"><span>Reference</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-reference">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+              <p>Coming soon.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div>&copy; Siyan &mdash; Portfolio</div></footer>
+  <script src="/assets/js/expandable.js"></script>
+</body>
+</html>

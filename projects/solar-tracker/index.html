@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="/assets/js/site-mode.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A dual-axis tracker that keeps a solar panel pointed at a light source, using a four-quadrant photodiode sensor and an STM32 PID loop to drive two stepper motors.">
+  <title>Solar Tracker | Projects</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/projects/" aria-current="location">Projects</a>
+        <a href="/experience/">Experience</a>
+        <a href="/blog/">Blog</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="blog-article">
+    <a class="blog-back-link" href="/projects/">&larr; Back to projects</a>
+    <article>
+      <header class="hero">
+        <h1>Solar Tracker</h1>
+        <p>A dual-axis tracker that keeps a solar panel pointed at a light source, using a four-quadrant photodiode sensor and an STM32 PID loop to drive two stepper motors.</p>
+        <div class="project-tags blog-tags" aria-label="Project tags">
+          <span>Hardware</span>
+          <span>Firmware</span>
+        </div>
+        <div class="tech-stack">
+          <span>STM32</span>
+          <span>PID</span>
+          <span>Stepper Motors</span>
+          <span>KiCad</span>
+          <span>INA226</span>
+        </div>
+        <!--
+          LINKS (hidden). Remove the "hidden" attribute below to show them,
+          fill in each href, and delete any you don't need. Icons available in
+          /assets/icons: github, linkedin, external-link, mail.
+        -->
+        <div class="project-links" hidden>
+          <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="/assets/icons/github.svg" alt="" width="20" height="20"></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="Project link"><img src="/assets/icons/external-link.svg" alt="" width="20" height="20"></a>
+        </div>
+      </header>
+
+      <!--
+        SECTIONS. Each .proj-section is click-to-expand, separated by a divider.
+        Keep the four standard sections (System Overview, Architecture,
+        Future Expansion, Reference).
+        Inside a section's .proj-body you can add:
+          - plain paragraphs / lists
+          - a small header:      <h3 class="proj-subhead">Title</h3>
+          - a nested expansion:  copy a <div class="proj-sub"> block and give
+            its button/aria-controls/id a unique name.
+      -->
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-overview"><span>System Overview</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-overview">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+                  <p>The panel should face the light. A four-quadrant photodiode sensor measures which way the light is off-centre, and an STM32 turns two stepper motors (pan and tilt) until the error is near zero. The system is built first on a dev board and perfboard, then moved to a custom two-layer PCB. It is currently in development.</p>
+                  <p>A lamp indoors makes the tracker testable on any day; tracking the sun outdoors is a later test, where panel output power is compared with a fixed panel.</p>
+
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-architecture"><span>Architecture</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-architecture">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+              <div class="proj-sub" data-expandable="header">
+                <h3><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-architecture-1"><span>Light Sensing</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h3>
+                <div class="exp-details" id="sec-architecture-1">
+                  <div class="exp-details-inner">
+                    <div class="proj-body">
+                        <p>Four photodiodes sit in a quadrant behind a cross-shaped shade, so the signal depends on the angle of the light. Transimpedance amplifiers convert the photodiode currents to voltages, starting with a single gain range.</p>
+                        <p>With photodiode currents I<sub>TL</sub>, I<sub>TR</sub>, I<sub>BL</sub> and I<sub>BR</sub>, the firmware computes a normalised error for each axis:</p>
+                        <ul>
+                          <li>e<sub>x</sub> = ((I<sub>TL</sub> + I<sub>BL</sub>) &minus; (I<sub>TR</sub> + I<sub>BR</sub>)) / (I<sub>TL</sub> + I<sub>TR</sub> + I<sub>BL</sub> + I<sub>BR</sub> + &epsilon;)</li>
+                          <li>e<sub>y</sub> = ((I<sub>TL</sub> + I<sub>TR</sub>) &minus; (I<sub>BL</sub> + I<sub>BR</sub>)) / (I<sub>TL</sub> + I<sub>TR</sub> + I<sub>BL</sub> + I<sub>BR</sub> + &epsilon;)</li>
+                        </ul>
+                        <p>Normalising reduces brightness sensitivity only while the channels are linear. It does not fix saturation, low signal-to-noise indoors, mismatched channels or several competing lights, so the design adds:</p>
+                        <ul>
+                          <li>A minimum-total-light threshold: below it, the tracker holds position</li>
+                          <li>Per-channel calibration of gain and offset, stored in firmware</li>
+                          <li>Switched gain with hysteresis, only if one gain range proves insufficient</li>
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="proj-sub" data-expandable="header">
+                <h3><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-architecture-2"><span>Control Firmware</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h3>
+                <div class="exp-details" id="sec-architecture-2">
+                  <div class="exp-details-inner">
+                    <div class="proj-body">
+                        <p>STM32 firmware reads the four signals, computes the normalised error, and steps the motors with a PID loop.</p>
+                        <ul>
+                          <li><strong>Stepper control:</strong> hardware-timer step generation for the pan and tilt axes</li>
+                          <li><strong>Homing and limits:</strong> homing and limit switches keep each axis in range</li>
+                          <li><strong>Fault handling:</strong> the motors stop on a limit hit or a lost signal</li>
+                          <li><strong>PID loop:</strong> anti-windup and output limits, tuned against the measured step response</li>
+                        </ul>
+                        <p>There are no encoders, so the PID loop closes on the photodiode error rather than on motor position. The stepper position itself is open loop.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="proj-sub" data-expandable="header">
+                <h3><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-architecture-3"><span>Power Monitoring</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h3>
+                <div class="exp-details" id="sec-architecture-3">
+                  <div class="exp-details-inner">
+                    <div class="proj-body">
+                        <p>An INA226 measures panel voltage and current, using a shunt in the panel output line. Panel output power is then compared with a fixed panel to show the gain from tracking.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="proj-sub" data-expandable="header">
+                <h3><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-architecture-4"><span>Custom PCB</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h3>
+                <div class="exp-details" id="sec-architecture-4">
+                  <div class="exp-details-inner">
+                    <div class="proj-body">
+                        <p>The prototype on a dev board and perfboard is followed by a single two-layer KiCad board holding:</p>
+                        <ul>
+                          <li>The STM32 microcontroller</li>
+                          <li>Stepper drivers (TMC2209-class, final choice subject to motor ratings)</li>
+                          <li>Photodiode transimpedance amplifiers</li>
+                          <li>The INA226 power monitor</li>
+                          <li>Limit-switch inputs and test points</li>
+                        </ul>
+                        <p>The board is brought up in stages: power rails, MCU, drivers, sensor amplifiers, then the INA226. The mount is a simple 3D-printed or hobby pan-tilt frame.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="proj-sub" data-expandable="header">
+                <h3><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-architecture-5"><span>Validation Plan</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h3>
+                <div class="exp-details" id="sec-architecture-5">
+                  <div class="exp-details-inner">
+                    <div class="proj-body">
+                        <p>Indoor and outdoor results are kept separate. A lamp has a different beam geometry, spectrum and angular size from the sun, so indoor results are not assumed to transfer outdoors.</p>
+                        <ul>
+                          <li><strong>Indoor (lamp):</strong> sensor acquisition, loop stability, step response, and disturbance rejection, including ambient-light rejection and saturation recovery after a bright pulse</li>
+                          <li><strong>Outdoor (sun):</strong> alignment error and panel power against a fixed panel, if weather allows</li>
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-future"><span>Future Expansion</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-future">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+              <ul>
+                <li>Brushed DC azimuth with an encoder, as a second motor-control approach</li>
+                <li>Switched gain for outdoor illumination, if one range fails</li>
+                <li>Sun-position feed-forward using an established solar-position algorithm such as NREL SPA</li>
+                <li>GNSS time and location from the Wireless Telemetry Platform board</li>
+                <li>Python hardware-in-the-loop test environment with injected noise and sensor dropouts</li>
+                <li>Outdoor tests over several hours</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-reference"><span>Reference</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-reference">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+              <p>Coming soon.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div>&copy; Siyan &mdash; Portfolio</div></footer>
+  <script src="/assets/js/expandable.js"></script>
+</body>
+</html>

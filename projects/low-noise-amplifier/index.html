@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="/assets/js/site-mode.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A 1 GHz low-noise amplifier designed in Keysight ADS, implementing stability and impedance matching networks and validating performance through EM simulation.">
+  <title>Low Noise Amplifier | Projects</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/projects/" aria-current="location">Projects</a>
+        <a href="/experience/">Experience</a>
+        <a href="/blog/">Blog</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="blog-article">
+    <a class="blog-back-link" href="/projects/">&larr; Back to projects</a>
+    <article>
+      <header class="hero">
+        <h1>Low Noise Amplifier</h1>
+        <p>A 1 GHz low-noise amplifier designed in Keysight ADS, implementing stability and impedance matching networks and validating performance through EM simulation.</p>
+        <div class="project-tags blog-tags" aria-label="Project tags">
+          <span>Hardware</span>
+        </div>
+        <div class="tech-stack">
+          <span>RF</span>
+          <span>Keysight ADS</span>
+        </div>
+        <!--
+          LINKS (hidden). Remove the "hidden" attribute below to show them,
+          fill in each href, and delete any you don't need. Icons available in
+          /assets/icons: github, linkedin, external-link, mail.
+        -->
+        <div class="project-links" hidden>
+          <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="/assets/icons/github.svg" alt="" width="20" height="20"></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="Project link"><img src="/assets/icons/external-link.svg" alt="" width="20" height="20"></a>
+        </div>
+      </header>
+
+      <!--
+        SECTIONS. Each .proj-section is click-to-expand, separated by a divider.
+        Keep the four standard sections (System Overview, Architecture,
+        Future Expansion, Reference).
+        Inside a section's .proj-body you can add:
+          - plain paragraphs / lists
+          - a small header:      <h3 class="proj-subhead">Title</h3>
+          - a nested expansion:  copy a <div class="proj-sub"> block and give
+            its button/aria-controls/id a unique name.
+      -->
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-overview"><span>System Overview</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-overview">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+              <p>
+                A 1 GHz low-noise amplifier designed in Keysight ADS, with biasing, input and output matching, and stabilization networks for stable RF operation.
+              </p>
+              <p>
+                Performance was validated through S-parameter and EM simulation, assessing impedance matching and stability under layout parasitics.
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-architecture"><span>Architecture</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-architecture">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+              <p>Coming soon.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-future"><span>Future Expansion</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-future">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+              <p>Coming soon.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-reference"><span>Reference</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-reference">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+              <p>Coming soon.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div>&copy; Siyan &mdash; Portfolio</div></footer>
+  <script src="/assets/js/expandable.js"></script>
+</body>
+</html>

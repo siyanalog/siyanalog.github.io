@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="/assets/js/site-mode.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A hardware digital downconverter implemented on a PYNQ-Z1 FPGA to select a frequency channel from a wider-band signal and output filtered baseband I/Q data.">
+  <title>FPGA Digital Downconverter | Projects</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/projects/" aria-current="location">Projects</a>
+        <a href="/experience/">Experience</a>
+        <a href="/blog/">Blog</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="blog-article">
+    <a class="blog-back-link" href="/projects/">&larr; Back to projects</a>
+    <article>
+      <header class="hero">
+        <h1>FPGA Digital Downconverter</h1>
+        <p>A hardware digital downconverter implemented on a PYNQ-Z1 FPGA to select a frequency channel from a wider-band signal and output filtered baseband I/Q data.</p>
+        <div class="project-tags blog-tags" aria-label="Project tags">
+          <span>FPGA</span>
+        </div>
+        <div class="tech-stack">
+          <span>SystemVerilog</span>
+          <span>PYNQ-Z1</span>
+          <span>Vivado</span>
+          <span>Cocotb</span>
+          <span>Python</span>
+        </div>
+        <!--
+          LINKS (hidden). Remove the "hidden" attribute below to show them,
+          fill in each href, and delete any you don't need. Icons available in
+          /assets/icons: github, linkedin, external-link, mail.
+        -->
+        <div class="project-links" hidden>
+          <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="/assets/icons/github.svg" alt="" width="20" height="20"></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="Project link"><img src="/assets/icons/external-link.svg" alt="" width="20" height="20"></a>
+        </div>
+      </header>
+
+      <!--
+        SECTIONS. Each .proj-section is click-to-expand, separated by a divider.
+        Keep the four standard sections (System Overview, Architecture,
+        Future Expansion, Reference).
+        Inside a section's .proj-body you can add:
+          - plain paragraphs / lists
+          - a small header:      <h3 class="proj-subhead">Title</h3>
+          - a nested expansion:  copy a <div class="proj-sub"> block and give
+            its button/aria-controls/id a unique name.
+      -->
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-overview"><span>System Overview</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-overview">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+                  <p>
+                    Simulated multi-channel radio signals are generated in Python
+                    and streamed to the FPGA. The FPGA tunes to a selected frequency,
+                    shifts the channel to baseband, filters unwanted frequency
+                    content, and outputs I/Q samples for further SDR processing.
+                  </p>
+
+                  <p>
+                    The project implements one complete and independently testable
+                    signal-processing subsystem that can later be integrated into a
+                    larger SDR receiver.
+                  </p>
+
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-architecture"><span>Architecture</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-architecture">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+                        <p>
+                          The FPGA datapath implements an NCO, complex mixer, and FIR
+                          filter to tune to a selected frequency, shift it to baseband,
+                          and isolate the desired channel.
+                        </p>
+
+                        <div class="architecture-flow">
+
+                          <div class="arch-node">
+                            <strong>Python Test Signal</strong>
+                            <span>Simulated multi-channel input</span>
+                          </div>
+
+                          <div class="arch-arrow">↓</div>
+
+                          <div class="arch-node">
+                            <strong>ARM Processor</strong>
+                            <span>Control and sample transfer</span>
+                          </div>
+
+                          <div class="arch-arrow">
+                            <span>AXI DMA</span>
+                            ↓
+                          </div>
+
+                          <div class="arch-node arch-fpga">
+                            <strong>FPGA Digital Downconverter</strong>
+
+                            <div class="fpga-pipeline">
+                              <span>FIFO/NCO</span>
+                              <span>→</span>
+                              <span>Complex Mixer</span>
+                              <span>→</span>
+                              <span>FIR Filter</span>
+                              <span>→</span>
+                              <span>I/Q Output</span>
+                            </div>
+                          </div>
+
+                          <div class="arch-arrow">
+                            <span>AXI DMA</span>
+                            ↓
+                          </div>
+
+                          <div class="arch-node">
+                            <strong>Python Analysis</strong>
+                            <span>Verify and visualize I/Q output</span>
+                          </div>
+
+                        </div>
+
+                        <ul>
+                <li><strong>NCO</strong> generates the local oscillator based on the selected channel frequency.</li>
+                <li><strong>Complex mixer</strong> shifts the selected channel to baseband and produces I/Q samples.</li>
+                <li><strong>FIR filters</strong> remove nearby channels and unwanted frequency content.</li>
+                <li>The datapath is built as <strong>AXI4-Stream</strong> RTL IP with FIFO buffering, AXI DMA, and memory-mapped tuning registers for runtime channel selection.</li>
+                <li>The RTL is tested against Python DSP reference models using <strong>Cocotb</strong> and <strong>Verilator</strong>.</li>
+              </ul>
+
+                        <p>
+                          The RTL is tested against Python DSP reference models using
+                          Cocotb and Verilator, with waveform analysis in GTKWave and
+                          implementation analysis in Vivado.
+                        </p>
+
+
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-future"><span>Future Expansion</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-future">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+              <p>Coming soon.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-reference"><span>Reference</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-reference">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+              <p>Coming soon.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div>&copy; Siyan &mdash; Portfolio</div></footer>
+  <script src="/assets/js/expandable.js"></script>
+</body>
+</html>

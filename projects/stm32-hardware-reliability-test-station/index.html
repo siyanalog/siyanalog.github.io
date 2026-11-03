@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="/assets/js/site-mode.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A Linux station that soak-tests embedded devices, catches and classifies their resets, hangs and crashes down to the source line, and measures its own detection accuracy.">
+  <title>STM32 Hardware Reliability Test Station | Projects</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/projects/" aria-current="location">Projects</a>
+        <a href="/experience/">Experience</a>
+        <a href="/blog/">Blog</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="blog-article">
+    <a class="blog-back-link" href="/projects/">&larr; Back to projects</a>
+    <article>
+      <header class="hero">
+        <h1>STM32 Hardware reliability test station</h1>
+        <p>A Linux station that soak-tests embedded devices, catches and classifies their resets, hangs and crashes down to the source line, and measures its own detection accuracy.</p>
+        <div class="project-tags blog-tags" aria-label="Project tags">
+          <span>Hardware</span>
+          <span>Firmware</span>
+        </div>
+        <div class="tech-stack">
+          <span>C++</span>
+          <span>Linux</span>
+          <span>STM32</span>
+          <span>FreeRTOS</span>
+          <span>systemd</span>
+          <span>pytest</span>
+        </div>
+        <!--
+          LINKS (hidden). Remove the "hidden" attribute below to show them,
+          fill in each href, and delete any you don't need. Icons available in
+          /assets/icons: github, linkedin, external-link, mail.
+        -->
+        <div class="project-links" hidden>
+          <a href="#" target="_blank" rel="noopener" aria-label="View source on GitHub"><img src="/assets/icons/github.svg" alt="" width="20" height="20"></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="Project link"><img src="/assets/icons/external-link.svg" alt="" width="20" height="20"></a>
+        </div>
+      </header>
+
+      <!--
+        SECTIONS. Each .proj-section is click-to-expand, separated by a divider.
+        Keep the four standard sections (System Overview, Architecture,
+        Future Expansion, Reference).
+        Inside a section's .proj-body you can add:
+          - plain paragraphs / lists
+          - a small header:      <h3 class="proj-subhead">Title</h3>
+          - a nested expansion:  copy a <div class="proj-sub"> block and give
+            its button/aria-controls/id a unique name.
+      -->
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-overview"><span>System Overview</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-overview">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+                  <p>A Linux-hosted reliability station for embedded devices. A firmware build is flashed onto a device and left to run for hours under a normal or stress workload while the station watches it. It detects and classifies resets, hangs, link faults and crashes, power-cycles the device when it stops responding, and reports uptime, resets by cause, mean time between failures, and a symbolized crash location (file and line) for every hard fault.</p>
+                  <p>The daemon is device-agnostic: each device type plugs in through an adapter. The station also measures itself. Faults are injected at known times and its detections are compared with that ground truth to report detection latency, missed faults and false positives.</p>
+                  <h3 class="proj-subhead">Visibility levels</h3>
+                  <ul>
+                    <li><strong>Black box:</strong> power and a console or ping. The station can tell you about resets, boot failures, hangs and silence.</li>
+                    <li><strong>Grey box:</strong> adds a heartbeat over UART. Hangs are timed more finely and link faults become visible.</li>
+                    <li><strong>White box:</strong> adds a crash and reset-cause agent in the firmware. Each reset gets a cause and each crash a symbolized location (file and line).</li>
+                  </ul>
+                  <h3 class="proj-subhead">Supported devices</h3>
+                  <ul>
+                    <li><strong>Simulated DUT</strong> (configurable visibility): a software fake that injects faults at chosen times, giving end-to-end tests with no hardware and exact ground truth.</li>
+                    <li><strong>Reference STM32</strong> (white box): UART plus SWD/OpenOCD. Flashes firmware, reads the reset cause and crash dump, power-cycles, and detects hangs by heartbeat.</li>
+                    <li><strong>Linux board, Raspberry Pi</strong> (black box plus): serial console, SSH and ping, plus kernel-panic and hang cases.</li>
+                    <li><strong>Tracker STM32 firmware</strong> (white box): the Autonomous Tracking Platform firmware with the crash agent linked in.</li>
+                  </ul>
+
+
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-architecture"><span>Architecture</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-architecture">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+              <div class="proj-sub" data-expandable="header">
+                <h3><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-architecture-1"><span>Station Architecture</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h3>
+                <div class="exp-details" id="sec-architecture-1">
+                  <div class="exp-details-inner">
+                    <div class="proj-body">
+                        <p>The DUT sends events up through an adapter to the core daemon, which classifies them, logs them and sends recovery commands back down. pytest injects faults and compares its timestamps with the log; reporting reads the log.</p>
+                        <ul>
+                          <li><strong>Adapters:</strong> one per DUT type behind the same interface. Each registers its file descriptors with the daemon's <code>epoll</code> loop; a new device type is a new subclass plus a YAML device file.</li>
+                          <li><strong>Protocol:</strong> reliable framing over UART with delimiter, length, sequence number, type, payload and CRC. The CRC catches corruption; the sequence number catches drops, duplicates and reordering.</li>
+                          <li><strong>Core daemon:</strong> a single-threaded <code>epoll</code> loop with <code>timerfd</code> heartbeat deadlines and a per-device state machine (BOOTING, RUNNING, SUSPECT, HUNG, RECOVERING). A classifier maps signals to fault types, and a hang triggers a power-cycle.</li>
+                          <li><strong>Event log:</strong> sequence-numbered, CRC-checked records, fsynced on faults and replayed after a restart.</li>
+                          <li><strong>Supervision:</strong> a systemd <code>Type=notify</code> unit; the daemon pings the watchdog only when its loop makes progress.</li>
+                          <li><strong>Crash symbolization:</strong> the ELF recorded at flash time is passed to <code>addr2line</code> with the stacked PC and LR.</li>
+                          <li><strong>Test layer:</strong> pytest stamps each injection with a monotonic timestamp and compares it with the matching log event.</li>
+                          <li><strong>Reporting:</strong> latency percentiles, misses, false positives, confusion matrix, MTBF, timeline and symbolized stacks, as Markdown and JSON.</li>
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="proj-sub" data-expandable="header">
+                <h3><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-architecture-2"><span>STM32 Crash Agent</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h3>
+                <div class="exp-details" id="sec-architecture-2">
+                  <div class="exp-details-inner">
+                    <div class="proj-body">
+                        <ul>
+                          <li><strong>Reset cause:</strong> reads the RCC reset flags at boot (watchdog, brown-out, software, power-on, pin), reports them, then clears them.</li>
+                          <li><strong>HardFault capture:</strong> the handler records CFSR, HFSR, MMFAR, BFAR and the stacked registers (R0-R3, R12, LR, PC, xPSR) to a no-init RAM section or backup registers, then resets. The dump is reported after reboot.</li>
+                          <li><strong>Hang detection:</strong> the independent watchdog (IWDG) resets a stuck device; the cause is reported on the next boot.</li>
+                          <li><strong>RTOS faults:</strong> FreeRTOS stack-overflow and malloc-failed hooks log the fault and trigger a controlled reset.</li>
+                          <li><strong>Fault triggers:</strong> commands that cause each fault on demand (reference firmware only).</li>
+                          <li><strong>Heartbeat:</strong> a periodic frame over the CRC-framed UART.</li>
+                          <li><strong>Host side:</strong> the crash dump is symbolized against the firmware ELF with <code>addr2line</code>.</li>
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="proj-sub" data-expandable="header">
+                <h3><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-architecture-3"><span>Using the Station</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h3>
+                <div class="exp-details" id="sec-architecture-3">
+                  <div class="exp-details-inner">
+                    <div class="proj-body">
+                        <ol>
+                          <li><strong>Connect:</strong> wire the UART, SWD port and power switch.</li>
+                          <li><strong>Device config:</strong> one file with the adapter type, serial port and baud, reset method, flash command, heartbeat timeout and expected boot message.</li>
+                          <li><strong>Scenario file:</strong> duration, faults to inject (optional) and pass criteria, for example no unexpected resets and boot within a set time.</li>
+                          <li><strong>Flash:</strong> the station flashes the build under test through OpenOCD and records the git hash and ELF.</li>
+                          <li><strong>Run:</strong> the daemon monitors the device while it does its normal work or a stress script runs.</li>
+                          <li><strong>Detect and recover:</strong> events are timestamped and classified; on a hang the station power-cycles the device and logs the recovery.</li>
+                          <li><strong>Collect crashes:</strong> any crash dump is symbolized to file and line.</li>
+                          <li><strong>Report:</strong> uptime, resets by cause, hangs, mean time between failures, timeline, stack traces, pass or fail.</li>
+                          <li><strong>Compare:</strong> re-run after a fix and compare mean time between failures across firmware versions.</li>
+                        </ol>
+                        <p>Example: <code>station run --dut tracker.yaml --scenario soak-12h.yaml --firmware build/app.elf</code></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="proj-sub" data-expandable="header">
+                <h3><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-architecture-4"><span>Tech Stack</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h3>
+                <div class="exp-details" id="sec-architecture-4">
+                  <div class="exp-details-inner">
+                    <div class="proj-body">
+                        <h3 class="proj-subhead">Hardware</h3>
+                        <ul>
+                          <li>STM32 Nucleo board: reference device under test</li>
+                          <li>ST-Link (on the Nucleo): SWD flashing and debug, virtual COM port for UART</li>
+                          <li>Linux host (PC or Raspberry Pi): runs the station</li>
+                          <li>Raspberry Pi or other Linux board: second DUT type</li>
+                          <li>USB-to-UART adapter: serial link when the ST-Link COM port is not used</li>
+                          <li>Relay, MOSFET or USB-controllable switch: hard reset and power-cycle of the DUT</li>
+                          <li>INA226 current monitor (optional): supply current on the DUT</li>
+                          <li>Oscilloscope or logic analyzer: verifies timing and ground-truth timestamps</li>
+                        </ul>
+                        <h3 class="proj-subhead">Software</h3>
+                        <ul>
+                          <li><strong>Station core:</strong> C++17, CMake, <code>epoll</code>, <code>timerfd</code>; event loop, heartbeat deadlines, state machine, fault classification</li>
+                          <li><strong>Logging:</strong> append-only binary log (or SQLite); durable, sequence-numbered event record</li>
+                          <li><strong>Supervision:</strong> systemd (<code>Type=notify</code>, <code>libsystemd</code>, <code>sd_notify</code>), journald; watchdog, restart policy, resource limits</li>
+                          <li><strong>Device I/O:</strong> <code>termios</code> serial, udev rules, SSH, ICMP ping</li>
+                          <li><strong>STM32 firmware:</strong> C, FreeRTOS, IWDG, reset-cause flags, HardFault handler; crash agent and heartbeat</li>
+                          <li><strong>Debug-port automation:</strong> OpenOCD, <code>arm-none-eabi-gdb</code>, <code>arm-none-eabi-addr2line</code>; flash, read crash state, symbolize to file and line</li>
+                          <li><strong>Protocol:</strong> CRC-framed UART with sequence numbers, a host-testable C module shared by firmware and host</li>
+                          <li><strong>Tests:</strong> Python, pytest, pyserial, simulated DUT, sanitizers, valgrind</li>
+                          <li><strong>Observability:</strong> Wireshark with a Lua dissector (serial capture to pcap); optional OpenTelemetry or StatsD counters</li>
+                          <li><strong>Packaging:</strong> Yocto recipe or <code>.deb</code>, YAML config, git</li>
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="proj-sub" data-expandable="header">
+                <h3><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-architecture-5"><span>Testing and Results</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h3>
+                <div class="exp-details" id="sec-architecture-5">
+                  <div class="exp-details-inner">
+                    <div class="proj-body">
+                        <h3 class="proj-subhead">Requirements</h3>
+                        <ul>
+                          <li>Hang detection latency: [X] s, p99</li>
+                          <li>False positives per 24 h soak: [Y]</li>
+                          <li>Silent frame loss: 0</li>
+                          <li>Data loss across daemon restart: 0 events, replayed from log</li>
+                          <li>Crash dump to file and line: resolved for every HardFault injected</li>
+                        </ul>
+                        <h3 class="proj-subhead">Fault table</h3>
+                        <ul>
+                          <li><strong>Corrupt packet</strong> (pytest): CRC mismatch; count and log, request resend</li>
+                          <li><strong>Serial drop</strong> (pytest): sequence gap; log the gap, flag lost frames</li>
+                          <li><strong>Daemon crash</strong> (pytest): systemd watchdog; restart and replay log</li>
+                          <li><strong>STM32 IWDG reset</strong> (firmware command): reset cause plus heartbeat loss; log reset by cause</li>
+                          <li><strong>STM32 HardFault</strong> (firmware command): crash dump; symbolize and log file and line</li>
+                          <li><strong>STM32 hang</strong> (firmware command): heartbeat loss; power-cycle and log recovery</li>
+                          <li><strong>Linux board kernel panic or hang</strong> (pytest or SSH): console output, ping loss; power-cycle and log console tail</li>
+                          <li><strong>Serial device unplugged and returns</strong> (manual or script): udev event; pause, reattach, resume</li>
+                        </ul>
+                        <p>Measured per run: detection latency percentiles (p50, p99) per fault against injected ground truth; missed detections and false positives over a soak of [N] hours; a confusion matrix across fault types; recovery time and data lost per fault.</p>
+                        <h3 class="proj-subhead">Station failure analysis</h3>
+                        <ul>
+                          <li><strong>Daemon crash:</strong> monitoring stops. systemd sees the process exit; <code>Restart=on-failure</code> and log replay on start.</li>
+                          <li><strong>Daemon hang (loop stuck):</strong> faults go unseen. The <code>sd_notify</code> watchdog ping goes missing; systemd kills and restarts it.</li>
+                          <li><strong>Host hang:</strong> the whole station is silent. The host hardware watchdog times out and reboots; the run is marked interrupted and the log replayed.</li>
+                          <li><strong>Log disk full:</strong> events would be lost. A write error and free-space check stop the run loudly; rotate and reserve space.</li>
+                          <li><strong>Serial adapter loss:</strong> the device looks hung. The udev remove event classifies it as link loss, not a DUT hang; resume on return.</li>
+                          <li><strong>DUT stuck in a reset loop:</strong> endless power-cycles. Boots in a short window exceed a limit; stop cycling, mark the run failed, keep the last crash dump.</li>
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-future"><span>Future Expansion</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-future">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+              <p>Coming soon.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proj-section" data-expandable="header">
+        <h2><button class="exp-toggle" type="button" aria-expanded="false" aria-controls="sec-reference"><span>Reference</span><img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14"></button></h2>
+        <div class="exp-details" id="sec-reference">
+          <div class="exp-details-inner">
+            <div class="proj-body">
+              <p>Coming soon.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div>&copy; Siyan &mdash; Portfolio</div></footer>
+  <script src="/assets/js/expandable.js"></script>
+</body>
+</html>

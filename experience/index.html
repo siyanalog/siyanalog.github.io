@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <script src="/js/site-mode.js"></script>
+  <script src="/assets/js/site-mode.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Experience</title>
-  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
   <header class="site-header">
@@ -67,19 +67,29 @@
           <p class="timeline-location">Waterloo, ON</p>
           <p class="timeline-dates">Jan. 2026 – April. 2026</p>
         </div>
-        <div class="timeline-content">
-          <h3>Embedded Developer Intern</h3>
-          <ul>
-            <li class="filter-item" data-tags="firmware hardware">Implemented a DBus API in an embedded Linux daemon, defining signal and method contracts across GPIO and UART-MCU paths to decouple hardware events</li>
-            <li class="filter-item" data-tags="hardware firmware">Deployed a HIL test rig with RPi controller by assembling CAN bus hardware, enabling local FOTA and video validation across device variants</li>
-            <li class="filter-item" data-tags="software hardware">Diagnosed and remediated video pipeline faults across 3,000 cameras by boot-time init sequencing, stall detection, and post-OOM hardware cleanup for automated recovery</li>
-            <li class="filter-item" data-tags="software">Instrumented an OTel collector with StatsD counters to surface configuration failures across a fleet of 1900+ devices</li>
-          </ul>
+        <div class="timeline-content exp-card" data-expandable>
+          <h3>
+            <button class="exp-toggle" type="button" aria-expanded="false" aria-controls="exp-geotab">
+              <span>Embedded Developer Intern</span>
+              <img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14">
+            </button>
+          </h3>
+          <p class="exp-summary">Built a DBus API, a hardware-in-the-loop test rig, and recovery tooling for embedded Linux telematics devices running across a fleet of thousands.</p>
           <div class="tech-stack">
             <span>DBus</span>
             <span>Embedded Linux</span>
             <span>CAN Bus</span>
             <span>OpenTelemetry</span>
+          </div>
+          <div class="exp-details" id="exp-geotab">
+            <div class="exp-details-inner">
+              <ul>
+                <li class="filter-item" data-tags="firmware hardware">Implemented a DBus API in an embedded Linux daemon, defining signal and method contracts across GPIO and UART-MCU paths to decouple hardware events</li>
+                <li class="filter-item" data-tags="hardware firmware">Deployed a HIL test rig with RPi controller by assembling CAN bus hardware, enabling local FOTA and video validation across device variants</li>
+                <li class="filter-item" data-tags="software hardware">Diagnosed and remediated video pipeline faults across 3,000 cameras by boot-time init sequencing, stall detection, and post-OOM hardware cleanup for automated recovery</li>
+                <li class="filter-item" data-tags="software">Instrumented an OTel collector with StatsD counters to surface configuration failures across a fleet of 1900+ devices</li>
+              </ul>
+            </div>
           </div>
         </div>
       </article>
@@ -90,18 +100,28 @@
           <p class="timeline-location">Toronto, ON</p>
           <p class="timeline-dates">May. 2025 – Aug. 2025</p>
         </div>
-        <div class="timeline-content">
-          <h3>Embedded Software Developer Intern</h3>
-          <ul>
-            <li class="filter-item" data-tags="firmware">Implemented FPGA logic in Verilog for precision weight measurement in Xilinx Vivado through RTL simulation and JTAG-based functional testing, automating verification with Tcl scripts and confirming signal integrity via oscilloscope and logic analyzer</li>
-            <li class="filter-item" data-tags="software firmware">Developed C utility to parse MCS files and write to FPGA flash via PCIe, deploy firmware remotely via SSH/SCP to enable field updates across analog I/O, LCI, and carrier card hardware</li>
-            <li class="filter-item" data-tags="software">Developed sensor validation pipeline in MATLAB to process camera data, applying edge detection to compute steel rod camber deviations and automating dimensional verification with Python</li>
-          </ul>
+        <div class="timeline-content exp-card" data-expandable>
+          <h3>
+            <button class="exp-toggle" type="button" aria-expanded="false" aria-controls="exp-vishay-precision-group">
+              <span>Embedded Software Developer Intern</span>
+              <img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14">
+            </button>
+          </h3>
+          <p class="exp-summary">Developed FPGA logic and firmware deployment tooling for precision weight-measurement hardware, plus a MATLAB sensor-validation pipeline.</p>
           <div class="tech-stack">
             <span>Verilog</span>
             <span>Xilinx Vivado</span>
             <span>JTAG</span>
             <span>MATLAB</span>
+          </div>
+          <div class="exp-details" id="exp-vishay-precision-group">
+            <div class="exp-details-inner">
+              <ul>
+                <li class="filter-item" data-tags="firmware">Implemented FPGA logic in Verilog for precision weight measurement in Xilinx Vivado through RTL simulation and JTAG-based functional testing, automating verification with Tcl scripts and confirming signal integrity via oscilloscope and logic analyzer</li>
+                <li class="filter-item" data-tags="software firmware">Developed C utility to parse MCS files and write to FPGA flash via PCIe, deploy firmware remotely via SSH/SCP to enable field updates across analog I/O, LCI, and carrier card hardware</li>
+                <li class="filter-item" data-tags="software">Developed sensor validation pipeline in MATLAB to process camera data, applying edge detection to compute steel rod camber deviations and automating dimensional verification with Python</li>
+              </ul>
+            </div>
           </div>
         </div>
       </article>
@@ -112,15 +132,25 @@
           <p class="timeline-location">Waterloo, ON</p>
           <p class="timeline-dates">Sep. 2024 – Dec. 2024</p>
         </div>
-        <div class="timeline-content">
-          <h3>Software Developer Intern</h3>
-          <ul>
-            <li class="filter-item" data-tags="hardware software">Developed sensor acquisition pipeline for X-ray imaging, implementing gain/offset calibration to normalize raw detector output</li>
-            <li class="filter-item" data-tags="software">Optimized multi panel stitching, applying histogram correction with matrix transformation for clinical visualization</li>
-          </ul>
+        <div class="timeline-content exp-card" data-expandable>
+          <h3>
+            <button class="exp-toggle" type="button" aria-expanded="false" aria-controls="exp-ka-imaging">
+              <span>Software Developer Intern</span>
+              <img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14">
+            </button>
+          </h3>
+          <p class="exp-summary">Built sensor acquisition, calibration, and multi-panel image stitching software for X-ray imaging detectors.</p>
           <div class="tech-stack">
             <span>Image Processing</span>
             <span>Sensor Calibration</span>
+          </div>
+          <div class="exp-details" id="exp-ka-imaging">
+            <div class="exp-details-inner">
+              <ul>
+                <li class="filter-item" data-tags="hardware software">Developed sensor acquisition pipeline for X-ray imaging, implementing gain/offset calibration to normalize raw detector output</li>
+                <li class="filter-item" data-tags="software">Optimized multi panel stitching, applying histogram correction with matrix transformation for clinical visualization</li>
+              </ul>
+            </div>
           </div>
         </div>
       </article>
@@ -131,16 +161,26 @@
           <p class="timeline-location">Waterloo, ON</p>
           <p class="timeline-dates">Jan. 2024 – April. 2024</p>
         </div>
-        <div class="timeline-content">
-          <h3>Embedded Software Developer Intern</h3>
-          <ul>
-            <li class="filter-item" data-tags="firmware hardware">Developed low level GPIO and I²C driver functions in C to access FPGA control register and FTDI hardware, enabling real-time register-level configuration and testing of automotive vehicle systems</li>
-            <li class="filter-item" data-tags="hardware">Diagnosed and resolved FPGA board and adaptor faults across multiple projects using oscilloscopes, logic analyzers</li>
-          </ul>
+        <div class="timeline-content exp-card" data-expandable>
+          <h3>
+            <button class="exp-toggle" type="button" aria-expanded="false" aria-controls="exp-onsemi">
+              <span>Embedded Software Developer Intern</span>
+              <img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14">
+            </button>
+          </h3>
+          <p class="exp-summary">Wrote low-level GPIO and I²C drivers in C and debugged FPGA hardware for automotive systems testing.</p>
           <div class="tech-stack">
             <span>C</span>
             <span>GPIO/I²C</span>
             <span>FPGA</span>
+          </div>
+          <div class="exp-details" id="exp-onsemi">
+            <div class="exp-details-inner">
+              <ul>
+                <li class="filter-item" data-tags="firmware hardware">Developed low level GPIO and I²C driver functions in C to access FPGA control register and FTDI hardware, enabling real-time register-level configuration and testing of automotive vehicle systems</li>
+                <li class="filter-item" data-tags="hardware">Diagnosed and resolved FPGA board and adaptor faults across multiple projects using oscilloscopes, logic analyzers</li>
+              </ul>
+            </div>
           </div>
         </div>
       </article>
@@ -155,8 +195,9 @@
           <h2>UW Formula Electric</h2>
           <p class="timeline-location">Electric race car design team</p>
         </div>
-        <div class="timeline-content">
+        <div class="timeline-content exp-card">
           <h3>Firmware Team Member</h3>
+          <p class="exp-summary">Firmware team member on the University of Waterloo electric race car team.</p>
         </div>
       </article>
 
@@ -165,19 +206,29 @@
           <h2>UWASIC</h2>
           <p class="timeline-location">ASIC and FPGA design team</p>
         </div>
-        <div class="timeline-content">
-          <h3>Analog Design Team Member</h3>
-          <ul>
-            <li class="filter-item" data-tags="hardware">Designed a two-stage CMOS op amp using SKY130 130nm PDK in Xschem to meet design specifications</li>
-            <li class="filter-item" data-tags="hardware">Developed ngspice testbenches to characterize DC gain, frequency response, CMRR, input/output impedance, and power consumption, iterating transistor sizing to improve performance</li>
-            <li class="filter-item" data-tags="hardware">Implemented the op-amp physical layout in KLayout, applying analog layout techniques for device matching and parasitic reduction and performing DRC/LVS verification for fabrication readiness</li>
-          </ul>
+        <div class="timeline-content exp-card" data-expandable>
+          <h3>
+            <button class="exp-toggle" type="button" aria-expanded="false" aria-controls="exp-uwasic">
+              <span>Analog Design Team Member</span>
+              <img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14">
+            </button>
+          </h3>
+          <p class="exp-summary">Designed, simulated, and laid out a two-stage CMOS op amp on the open-source SKY130 process.</p>
           <div class="tech-stack">
             <span>SKY130</span>
             <span>Xschem</span>
             <span>ngspice</span>
             <span>KLayout</span>
             <span>DRC/LVS</span>
+          </div>
+          <div class="exp-details" id="exp-uwasic">
+            <div class="exp-details-inner">
+              <ul>
+                <li class="filter-item" data-tags="hardware">Designed a two-stage CMOS op amp using SKY130 130nm PDK in Xschem to meet design specifications</li>
+                <li class="filter-item" data-tags="hardware">Developed ngspice testbenches to characterize DC gain, frequency response, CMRR, input/output impedance, and power consumption, iterating transistor sizing to improve performance</li>
+                <li class="filter-item" data-tags="hardware">Implemented the op-amp physical layout in KLayout, applying analog layout techniques for device matching and parasitic reduction and performing DRC/LVS verification for fabrication readiness</li>
+              </ul>
+            </div>
           </div>
         </div>
       </article>
@@ -187,15 +238,14 @@
           <h2>Midnight Sun</h2>
           <p class="timeline-location">Solar vehicle design team</p>
         </div>
-        <div class="timeline-content">
-          <h3>Hardware Team Member</h3>
-          <ul>
-            <li class="filter-item" data-tags="hardware">Designed IMU board layout in Altium, optimizing sensor placement and grounding strategy to reduce noise coupling and improve suspension telemetry reliability</li>
-            <li class="filter-item" data-tags="hardware">Implemented shunt based current sensing system with a 16-bit ADC, enabling high-resolution voltage measurement and digital conversion to improve BMS accuracy</li>
-            <li class="filter-item" data-tags="hardware">Evaluated RF transceiver candidates for the telemetry subsystem, researched and documented design iterations</li>
-            <li class="filter-item" data-tags="hardware">Soldered SMD components on PCBs, debugged power and signal integrity during board bring-up</li>
-            <li class="filter-item" data-tags="hardware">Validated AFE voltage acquisition and BMS cell-balancing functionality through functional and system integration testing</li>
-          </ul>
+        <div class="timeline-content exp-card" data-expandable>
+          <h3>
+            <button class="exp-toggle" type="button" aria-expanded="false" aria-controls="exp-midnight-sun">
+              <span>Hardware Team Member</span>
+              <img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14">
+            </button>
+          </h3>
+          <p class="exp-summary">Designed and brought up PCBs for the solar vehicle's telemetry and battery management systems.</p>
           <div class="tech-stack">
             <span>Altium</span>
             <span>PCB Design</span>
@@ -203,6 +253,17 @@
             <span>ADC</span>
             <span>BMS</span>
             <span>RF Telemetry</span>
+          </div>
+          <div class="exp-details" id="exp-midnight-sun">
+            <div class="exp-details-inner">
+              <ul>
+                <li class="filter-item" data-tags="hardware">Designed IMU board layout in Altium, optimizing sensor placement and grounding strategy to reduce noise coupling and improve suspension telemetry reliability</li>
+                <li class="filter-item" data-tags="hardware">Implemented shunt based current sensing system with a 16-bit ADC, enabling high-resolution voltage measurement and digital conversion to improve BMS accuracy</li>
+                <li class="filter-item" data-tags="hardware">Evaluated RF transceiver candidates for the telemetry subsystem, researched and documented design iterations</li>
+                <li class="filter-item" data-tags="hardware">Soldered SMD components on PCBs, debugged power and signal integrity during board bring-up</li>
+                <li class="filter-item" data-tags="hardware">Validated AFE voltage acquisition and BMS cell-balancing functionality through functional and system integration testing</li>
+              </ul>
+            </div>
           </div>
         </div>
       </article>
@@ -212,14 +273,14 @@
           <h2>DeepBlue</h2>
           <p class="timeline-location">Underwater vehicle design team</p>
         </div>
-        <div class="timeline-content">
-          <h3>Firmware Team Member</h3>
-          <ul>
-            <li class="filter-item" data-tags="firmware hardware">Implemented a custom BMS driver in C over I2C for accurate SOC estimation and voltage monitoring</li>
-            <li class="filter-item" data-tags="firmware software">Integrated microROS with FreeRTOS, creating multithreaded tasks to synchronize data and relay events to Jetson</li>
-            <li class="filter-item" data-tags="firmware hardware">Optimized UART, I2C, PWM, ADC, and DAC drivers for reliable communication between onboard sensors and actuators</li>
-            <li class="filter-item" data-tags="firmware hardware">Designed and unit-tested UART/CAN interfaces between Jetson and STM32 to pass navigation commands, sensor telemetry, and hydrophone data</li>
-          </ul>
+        <div class="timeline-content exp-card" data-expandable>
+          <h3>
+            <button class="exp-toggle" type="button" aria-expanded="false" aria-controls="exp-deepblue">
+              <span>Firmware Team Member</span>
+              <img class="exp-chevron" src="/assets/icons/chevron-down.svg" alt="" width="14" height="14">
+            </button>
+          </h3>
+          <p class="exp-summary">Wrote STM32 firmware for an underwater vehicle: peripheral drivers, microROS on FreeRTOS, and links to the Jetson.</p>
           <div class="tech-stack">
             <span>C</span>
             <span>microROS</span>
@@ -227,6 +288,16 @@
             <span>STM32</span>
             <span>Jetson</span>
             <span>UART/I2C/CAN</span>
+          </div>
+          <div class="exp-details" id="exp-deepblue">
+            <div class="exp-details-inner">
+              <ul>
+                <li class="filter-item" data-tags="firmware hardware">Implemented a custom BMS driver in C over I2C for accurate SOC estimation and voltage monitoring</li>
+                <li class="filter-item" data-tags="firmware software">Integrated microROS with FreeRTOS, creating multithreaded tasks to synchronize data and relay events to Jetson</li>
+                <li class="filter-item" data-tags="firmware hardware">Optimized UART, I2C, PWM, ADC, and DAC drivers for reliable communication between onboard sensors and actuators</li>
+                <li class="filter-item" data-tags="firmware hardware">Designed and unit-tested UART/CAN interfaces between Jetson and STM32 to pass navigation commands, sensor telemetry, and hydrophone data</li>
+              </ul>
+            </div>
           </div>
         </div>
       </article>
@@ -266,7 +337,8 @@
   </main>
 
   <footer class="site-footer"><div>© Siyan — Portfolio</div></footer>
-  <script src="../js/tag-filters.js"></script>
-  <script src="../js/experience.js"></script>
+  <script src="/assets/js/tag-filters.js"></script>
+  <script src="/assets/js/tabs.js"></script>
+  <script src="/assets/js/expandable.js"></script>
 </body>
 </html>
